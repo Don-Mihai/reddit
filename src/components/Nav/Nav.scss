@@ -1,0 +1,80 @@
+.nav {
+    max-width: 222px;
+}
+
+.nav__wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav__title {
+    padding: 15px 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #576f76;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.nav__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__icon-arrow::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    display: block;
+    background-image: url('./img/arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.nav__wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.nav__item,
+.nav__subitem {
+    padding: 5px 15px;
+    background-color: aqua;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.nav__item-lang {
+    padding: 13px 15px;
+    background-color: aqua;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.nav__link,
+.nav__sublink {
+    color: #0f1a1c;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.nav__title:hover,
+.nav__item:hover,
+.nav__subitem:hover {
+    background-color: #eaedef;
+}
+
+.nav__icon {
+    margin-right: 10px;
+}
+
+.nav__sublist {
+    margin: 5px 0;
+}
+
+.nav__button {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 50px;
+    color: #0f1a1c;
+}
