@@ -1,6 +1,110 @@
+$semi-grey: rgb(225, 225, 225);
+$semi-white: rgb(237, 237, 237);
+$red-color: #d93a00;
+
 .header {
-	display: flex;
-	justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 57px;
+    width: 100%;
+    padding: 0 16px;
+    border-bottom-width: 0.0625rem;
+    border-bottom: 1px solid $semi-grey;
+    &__input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 651px;
+        height: 40px;
+        padding: 0 15px;
+        border-radius: 25px;
+        border: none;
+        background-color: $semi-white;
+        background-image: url('./search.png');
+        background-size: 16px;
+        background-repeat: no-repeat;
+        background-position: 2%;
+        &:hover {
+            background-color: $semi-grey;
+        }
+    }
+}
+.input {
+    align-items: center;
+    height: 36px;
+    width: 559px;
+    padding: 8px 0;
+    border: none;
+    background-color: transparent;
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    & &__app {
+        &-btn {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            height: 38px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 14px;
+            text-transform: capitalize;
+            box-shadow: none;
+
+            color: black;
+            background-color: $semi-white;
+
+            &:hover {
+                box-shadow: none;
+                background-color: $semi-grey;
+            }
+        }
+        &-img {
+            height: 16px;
+        }
+    }
+
+    & &__login-btn {
+        height: 38px;
+        padding: 0 12px;
+        border-radius: 999px;
+        font-size: 14px;
+        text-transform: capitalize;
+        box-shadow: none;
+
+        background-color: $red-color;
+        &:hover {
+            box-shadow: none;
+            background-color: #8b2601;
+        }
+    }
+    & &__icon-btn {
+        &:hover {
+            background-color: $semi-grey;
+        }
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    &__img {
+        width: auto;
+        height: 38px;
+        &-wordmark {
+            height: 22px;
+            width: auto;
+        }
+    }
 }
 
 .modal {
