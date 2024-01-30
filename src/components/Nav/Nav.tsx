@@ -42,7 +42,7 @@ const Nav = () => {
     };
 
     return (
-        <>
+        <div>
             <List sx={{ width: '100%', maxWidth: 220, bgcolor: 'aqua', borderRadius: '10px' }}>
                 <ListItemButton onClick={handleClick}>
                     <ListItemText primary="Topics" />
@@ -1293,7 +1293,7 @@ Topics
                     </div>
                 </div>
             </nav>
-        </>
+        </div>
     );
 };
 
