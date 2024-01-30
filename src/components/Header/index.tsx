@@ -2,9 +2,12 @@ import { Button, IconButton, Dialog, Modal, TextField } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useState } from 'react';
 import './Header.scss';
+import Auth from './Auth';
+import Register from './Register';
 
 const Header = () => {
     const [open, setOpen] = useState(false);
+    const [isReg, setIsReg] = useState(true);
 
     const onOpen = () => {
         setOpen(true);
@@ -12,6 +15,10 @@ const Header = () => {
 
     const onClose = () => {
         setOpen(false);
+    };
+
+    const changeMode = () => {
+        setIsReg(!isReg);
     };
 
     return (
@@ -29,17 +36,8 @@ const Header = () => {
                 <IconButton>
                     <MoreHorizIcon />
                 </IconButton>
-                <Dialog open={open} onClose={onClose}>
-                    <div className="modal__wrap">
-                        <h2 className="modal__title">Log In</h2>
-                        <div className="modal__inputs">
-                            <TextField label="Username" variant="filled" fullWidth />
-                            <TextField label="Password" variant="filled" fullWidth />
-                        </div>
-                        <Button className="modal__button" variant="contained" fullWidth>
-                            Log In
-                        </Button>
-                    </div>
+                <Dialog className="modal" open={open} onClose={onClose}>
+                    <div className="modal__wrap">{isReg ? <Auth changeMode={changeMode} /> : <Register changeMode={changeMode} />}</div>
                 </Dialog>
             </div>
         </header>

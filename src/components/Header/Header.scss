@@ -20,7 +20,15 @@
 		gap: 20px;
 	}
 
-	&__button {
+	& &__button {
 		margin-top: 30px;
+	}
+	&__link {
+		color: #0045ac;
+		cursor: pointer;
+
+		&-wrap {
+			margin-top: 30px;
+		}
 	}
 }
