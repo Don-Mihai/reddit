@@ -1,7 +1,7 @@
 import { Button, IconButton, Dialog, TextField, dividerClasses, Tooltip } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useState } from 'react';
-import './header.scss';
+import './Header.scss';
 import Register from './Register';
 import Auth from './Auth';
 const Header = () => {
