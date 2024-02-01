@@ -1,10 +1,11 @@
 .aside {
     width: 340px;
     height: 394px;
-    background-color: #576f7625;
+    background-color: #576f761a;
     padding: 0px 16px;
     flex-direction: column;
     align-items: center;
+    border-radius: 10px;
 
     &__popular {
         width: 308px;
@@ -37,6 +38,12 @@
     margin-left: 10px;
     text-decoration: none;
 
+    &:hover {
+        width: 300px;
+        background-color: #2a3c421f;
+        border-radius: 5px;
+      }
+
     &__img {
         width: 30px;
         height: 30px;
@@ -46,6 +53,8 @@
     }
 
     &__name {
+        padding-left: 10px;
+
         &__text {
             align-items: center;
             font-size: 14px;
@@ -55,6 +64,7 @@
         &__members {
             align-items: center;
             font-size: 12px; 
+            padding-top: 5px;
         }
     }
 }
