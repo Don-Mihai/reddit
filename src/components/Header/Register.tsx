@@ -67,8 +67,10 @@ const Register = (props: any) => {
             </div>
 
             <div className="modal__link-wrap">
-                Already a redditor? <a href="#">Log in</a>
-                <span onClick={props.changeMode} className="modal__link"></span>
+                Already a redditor?
+                <span onClick={props.changeMode} className="modal__link">
+                    log in
+                </span>
             </div>
 
             <Button className={disabled ? 'modal__button_disabled' : 'modal__button'} variant="contained" fullWidth>

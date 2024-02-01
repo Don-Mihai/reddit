@@ -17,6 +17,7 @@ const Header = () => {
 
     const changeMode = () => {
         setIsReg(!isReg);
+        console.log(isReg);
     };
 
     return (
