@@ -1,4 +1,10 @@
-export const games = [
+interface INav {
+    name: string;
+    url: string;
+    src?: string;
+}
+
+export const games: INav[] = [
     { name: 'Valheim', url: 'https://www.reddit.com/t/valheim/' },
     { name: 'Genshin Impact', url: 'https://www.reddit.com/t/genshin_impact/' },
     { name: 'Minecraft', url: 'https://www.reddit.com/t/minecraft/' },
@@ -72,7 +78,7 @@ export const celebrities = [
     { name: 'Keanu Reeves', url: 'https://www.reddit.com/t/keanu_reeves/' },
 ];
 
-export const subTopics = [
+export const subTopics: INav[] = [
     { name: 'Animals & Pets', url: 'https://www.reddit.com/t/animals_and_pets/', src: require('./img/pets.png') },
     { name: 'Anime', url: 'https://www.reddit.com/t/anime/', src: require('./img/anime.png') },
     { name: 'Art', url: 'https://www.reddit.com/t/art/', src: require('./img/art.png') },
@@ -132,3 +138,31 @@ export const languages = [
     { name: 'Italiano', url: 'https://www.reddit.com/it/' },
     { name: 'Português', url: 'https://www.reddit.com/pt/' },
 ];
+
+export interface INavState {
+    open: boolean;
+    openSubGame: boolean;
+    openSubSport: boolean;
+    openSubBusiness: boolean;
+    openSubCrypto: boolean;
+    openSubTv: boolean;
+    openSubCelebrity: boolean;
+    openResource: boolean;
+    openLang: boolean;
+    openSubTopics: boolean;
+    openSubResources: boolean;
+}
+
+export const initialState: INavState = {
+    open: true,
+    openSubGame: false,
+    openSubSport: false,
+    openSubBusiness: false,
+    openSubCrypto: false,
+    openSubTv: false,
+    openSubCelebrity: false,
+    openResource: true,
+    openLang: true,
+    openSubTopics: false,
+    openSubResources: false,
+};
