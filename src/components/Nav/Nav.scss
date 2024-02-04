@@ -1,31 +1,66 @@
+@import 'variables';
+
 .nav {
-    min-width: 222px;
+    min-width: 232px;
     max-width: 350px;
-    position: relative;
+    height: 100%;
+    border-right: 1px solid $basic-grey;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+
+    &:hover {
+        overflow-y: auto;
+    }
+
+    & &__list {
+        &-border {
+            border-bottom: 1px solid $basic-grey;
+        }
+
+        &-padding {
+            padding: 0;
+            padding-top: 8px;
+        }
+
+        &-subpadding {
+            padding: 0;
+            padding-bottom: 8px;
+        }
+    }
 
     & &__title {
-        padding: 15px 15px;
+        padding: $padding;
         text-decoration: none;
         text-transform: uppercase;
-        color: #576f76;
-        border-radius: 10px;
+        color: $basic-lightest-grey;
+        border-radius: $border-raduis-item;
         cursor: pointer;
 
         &:hover {
-            background-color: #eaedef;
+            background-color: $basic-light-grey;
         }
+    }
+
+    & &__text span {
+        font-size: 14px;
+    }
+
+    & &__text-title span {
+        font-size: 12px;
     }
 
     & &__item {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 5px 15px;
-        border-radius: 10px;
+        padding: $padding;
+        font-size: 14px;
+        border-radius: $border-raduis-item;
         cursor: pointer;
 
         &:hover {
-            background-color: #eaedef;
+            background-color: $basic-light-grey;
         }
 
         &:active {
@@ -34,7 +69,7 @@
 
         &-lang {
             padding: 13px 15px;
-            border-radius: 10px;
+            border-radius: $border-raduis-item;
             cursor: pointer;
         }
     }
@@ -46,22 +81,27 @@
 
     & &__sublist {
         width: 100%;
-    }
 
-    & &__subitem {
-        padding: 5px 25px;
-        border-radius: 10px;
-        cursor: pointer;
-        &:hover {
-            background-color: #eaedef;
+        &-topics {
+            margin-left: 25px;
+            max-width: 195px;
+            border-left: 1px solid $basic-grey;
         }
     }
 
-    &__link,
-    &__sublink {
-        color: #0f1a1c;
-        text-decoration: none;
-        font-size: 14px;
+    & &__subitem {
+        padding: $padding;
+        border-radius: $border-raduis-item;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $basic-light-grey;
+        }
+
+        &-topics {
+            padding: $padding;
+            border-radius: $border-raduis-subitem;
+        }
     }
 
     &__icon {
@@ -71,20 +111,30 @@
     & &__button {
         margin-top: 10px;
         margin-left: 5px;
-        margin-bottom: 50px;
         font-size: 12px;
         font-weight: bold;
-        color: black;
-        background-color: white;
+        color: $basic-black;
+        background-color: $basic-white;
         box-shadow: none;
         transition: unset;
         animation: none;
         text-transform: none;
 
         &:hover {
-            background-color: rgb(225, 225, 225);
+            background-color: $basic-grey;
             box-shadow: none;
             border-radius: 50px;
+        }
+    }
+
+    & &__copyright {
+        padding: 16px 0 16px 15px;
+        font-size: 10px;
+        color: $basic-copyright;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
         }
     }
 }
