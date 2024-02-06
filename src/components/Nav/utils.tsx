@@ -1,4 +1,11 @@
-export const games = [
+import { Business, Telegram } from "@mui/icons-material";
+
+interface INav {
+    name:  string;
+    url: string;
+}
+
+export const games: INav[] = [
     { name: 'Valheim', url: 'https://www.reddit.com/t/valheim/' },
     { name: 'Genshin Impact', url: 'https://www.reddit.com/t/genshin_impact/' },
     { name: 'Minecraft', url: 'https://www.reddit.com/t/minecraft/' },
@@ -131,4 +138,46 @@ export const languages = [
     { name: 'Français', url: 'https://www.reddit.com/fr/' },
     { name: 'Italiano', url: 'https://www.reddit.com/it/' },
     { name: 'Português', url: 'https://www.reddit.com/pt/' },
+];
+
+export interface INavState{
+    open: boolean;
+    openSubGame: boolean;
+    openSubSport: boolean;
+    openSubBusiness: boolean;
+    openSubCrypto: boolean;
+    openSubTv: boolean;
+    openSubCelebrity: boolean;
+    openResource: boolean;
+    openLang: boolean;
+    openSubTopics: boolean;
+    openSubResources: boolean;
+}
+
+export const initialState: INavState = {
+    open: false,
+    openSubGame: false,
+    openSubSport: false,
+    openSubBusiness: false,
+    openSubCrypto: false,
+    openSubTv: false,
+    openSubCelebrity: false,
+    openResource: true,
+    openLang: true,
+    openSubTopics: false,
+    openSubResources: false,
+}
+
+const Topics = [
+    {
+        title: 'TOPICS',
+        subLinks: [
+        { name: 'Gaming', sublinks: games }, 
+        { name: 'Sports', sublinks: sports }, 
+        { title: 'Business', sublinks: businesses }, 
+        { title: 'Crypto', sublinks: cryptos }, 
+        { title: 'Television', sublinks: televisions }, 
+        { title: 'Celebrity', sublinks: celebrities }
+    ],
+    },
 ];

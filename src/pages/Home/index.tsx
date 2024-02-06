@@ -1,6 +1,8 @@
 import Header from '../../components/Header';
 import Nav from '../../components/Nav/Nav';
+// import Menu from '../../components/Header/Menu';
 import './Home.scss';
+
 
 const Home = () => {
     return (
@@ -8,6 +10,7 @@ const Home = () => {
             <Header />
             <main className="main">
                 <Nav />
+                {/* <Menu /> */}
                 <div className="content"></div>
 
                 <aside className="aside">
