@@ -176,14 +176,41 @@ export const initialState: INavState = {
 
 export const Topics = [
     {
-        title: 'TOPICS',
+        name: 'HOME',
+        url: '',
+        imgUrl: '',
+    },
+    {
+        name: 'POPULAR',
+        url: '',
+        imgUrl: '',
+    },
+    {
+        name: 'TOPICS',
+        url: '',
+        imgUrl: '',
+        objKey: 'open',
         sublinks: [
-            { name: 'Gaming', sublinks: games },
-            { name: 'Sports', sublinks: sports },
-            { name: 'Business', sublinks: businesses },
-            { name: 'Crypto', sublinks: cryptos },
-            { name: 'Television', sublinks: televisions },
-            { name: 'Celebrity', sublinks: celebrities },
+            { name: 'Gaming', url: '', imgUrl: '', sublinks: games },
+            { name: 'Sports', url: '', imgUrl: '', sublinks: sports },
+            { name: 'Business', url: '', imgUrl: '', sublinks: businesses },
+            { name: 'Crypto', url: '', imgUrl: '', sublinks: cryptos },
+            { name: 'Television', url: '', imgUrl: '', sublinks: televisions },
+            { name: 'Celebrity', url: '', imgUrl: '', sublinks: celebrities },
         ],
+    },
+    {
+        name: 'RESOURCES',
+        url: '',
+        imgUrl: '',
+        objKey: 'openResource',
+        sublinks: resources,
+    },
+    {
+        name: 'POPULAR POSTS',
+        url: '',
+        imgUrl: '',
+        objKey: 'openLang',
+        sublinks: languages,
     },
 ];

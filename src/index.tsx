@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'reset-css';
+// import 'reset-css';
 import './styles/index.scss';
 import Home from './pages/Home';
 import Popular from './pages/Popular';
