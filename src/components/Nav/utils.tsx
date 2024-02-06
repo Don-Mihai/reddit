@@ -4,6 +4,11 @@ interface INav {
     src?: string;
 }
 
+export const mainNav = [
+    { name: 'Home', url: 'https://www.reddit.com/?feed=home', src: require('./img/home.png') },
+    { name: 'Popular', url: 'https://www.reddit.com/r/popular/', src: require('./img/arrow.png') },
+];
+
 export const games: INav[] = [
     { name: 'Valheim', url: 'https://www.reddit.com/t/valheim/' },
     { name: 'Genshin Impact', url: 'https://www.reddit.com/t/genshin_impact/' },
@@ -141,6 +146,7 @@ export const languages = [
 
 export interface INavState {
     open: boolean;
+    openTopMenu: boolean;
     openSubGame: boolean;
     openSubSport: boolean;
     openSubBusiness: boolean;
@@ -155,6 +161,7 @@ export interface INavState {
 
 export const initialState: INavState = {
     open: true,
+    openTopMenu: true,
     openSubGame: false,
     openSubSport: false,
     openSubBusiness: false,
@@ -166,3 +173,17 @@ export const initialState: INavState = {
     openSubTopics: false,
     openSubResources: false,
 };
+
+export const Topics = [
+    {
+        title: 'TOPICS',
+        sublinks: [
+            { name: 'Gaming', sublinks: games },
+            { name: 'Sports', sublinks: sports },
+            { name: 'Business', sublinks: businesses },
+            { name: 'Crypto', sublinks: cryptos },
+            { name: 'Television', sublinks: televisions },
+            { name: 'Celebrity', sublinks: celebrities },
+        ],
+    },
+];
