@@ -249,3 +249,20 @@ const Nav = () => {
 };
 
 export default Nav;
+
+const LinkComponent = ({ data }: any) => {
+    return (
+        <>
+            <h4>{data.name}</h4>
+            {data.sublinks && data.sublinks.length > 0 && (
+                <ul>
+                    {data.sublinks.map((sublink: any, index: any) => (
+                        <li key={index}>
+                            <LinkComponent data={sublink} />
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </>
+    );
+};
