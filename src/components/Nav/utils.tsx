@@ -4,6 +4,11 @@ interface INav {
     src?: string;
 }
 
+export const mainNav = [
+    { name: 'Home', url: 'https://www.reddit.com/?feed=home', src: require('./img/home.png') },
+    { name: 'Popular', url: 'https://www.reddit.com/r/popular/', src: require('./img/arrow.png') },
+];
+
 export const games: INav[] = [
     { name: 'Valheim', url: 'https://www.reddit.com/t/valheim/' },
     { name: 'Genshin Impact', url: 'https://www.reddit.com/t/genshin_impact/' },
@@ -141,6 +146,7 @@ export const languages = [
 
 export interface INavState {
     open: boolean;
+    openTopMenu: boolean;
     openSubGame: boolean;
     openSubSport: boolean;
     openSubBusiness: boolean;
@@ -155,6 +161,7 @@ export interface INavState {
 
 export const initialState: INavState = {
     open: true,
+    openTopMenu: true,
     openSubGame: false,
     openSubSport: false,
     openSubBusiness: false,
@@ -167,7 +174,7 @@ export const initialState: INavState = {
     openSubResources: false,
 };
 
-const Topics = [
+const Topics1 = [
     {
         title: 'TOPICS',
         sublinks: [
@@ -178,5 +185,46 @@ const Topics = [
             { name: 'Television', sublinks: televisions },
             { name: 'Celebrity', sublinks: celebrities },
         ],
+    },
+];
+
+export const Topics = [
+    {
+        name: 'HOME',
+        url: '',
+        imgUrl: '',
+    },
+    {
+        name: 'POPULAR',
+        url: '',
+        imgUrl: '',
+    },
+    {
+        name: 'TOPICS',
+        url: '',
+        imgUrl: '',
+        objKey: 'open',
+        sublinks: [
+            { name: 'Gaming', url: '', imgUrl: '', sublinks: games },
+            { name: 'Sports', url: '', imgUrl: '', sublinks: sports },
+            { name: 'Business', url: '', imgUrl: '', sublinks: businesses },
+            { name: 'Crypto', url: '', imgUrl: '', sublinks: cryptos },
+            { name: 'Television', url: '', imgUrl: '', sublinks: televisions },
+            { name: 'Celebrity', url: '', imgUrl: '', sublinks: celebrities },
+        ],
+    },
+    {
+        name: 'RESOURCES',
+        url: '',
+        imgUrl: '',
+        objKey: 'openResource',
+        sublinks: resources,
+    },
+    {
+        name: 'POPULAR POSTS',
+        url: '',
+        imgUrl: '',
+        objKey: 'openLang',
+        sublinks: languages,
     },
 ];

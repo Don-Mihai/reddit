@@ -1,9 +1,8 @@
-import Button from '@mui/material/Button';
 import './Nav.scss';
 import { useState } from 'react';
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { List, ListItemButton, ListItemText, Collapse } from '@mui/material';
-import { games, sports, businesses, cryptos, televisions, celebrities, subTopics, resources, subResources, languages, INavState, initialState } from './utils';
+import { List } from '@mui/material';
+import { INavState, initialState, Topics } from './utils';
+import LinkComponent from '../LinkComponent';
 
 const Nav = () => {
     const [nav, setNav] = useState<INavState>(initialState);
@@ -12,146 +11,12 @@ const Nav = () => {
         setNav({ ...nav, [key]: !nav[key] });
     };
 
-    console.log(nav);
     return (
         <div className="nav">
-            <List className="nav__list" sx={{ width: '100%', maxWidth: 220 }}>
-                <ListItemButton className="nav__title" onClick={() => changeNav('open')}>
-                    <ListItemText primary="Topics" />
-                    {nav.open ? <ExpandLess /> : <ExpandMore />}
-                </ListItemButton>
-
-                <Collapse in={nav.open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItemButton className="nav__item" onClick={() => changeNav('openSubGame')}>
-                            <img className="nav__icon" src={require('./img/joystick.png')} alt="" width={30} height={30} />
-                            <ListItemText primary="Gaming" />
-                            {nav.openSubGame ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-
-                        {games.map(item => {
-                            return (
-                                <Collapse in={nav.openSubGame} timeout="auto" unmountOnExit>
-                                    <List className="nav__sublist" component="div" disablePadding>
-                                        <ListItemButton className="nav__subitem" sx={{ pl: 4 }} onClick={() => window.open(item.url, '_blank')}>
-                                            <ListItemText primary={item.name} />
-                                        </ListItemButton>
-                                    </List>
-                                </Collapse>
-                            );
-                        })}
-                    </List>
-                </Collapse>
-
-                <Collapse in={nav.open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItemButton className="nav__item" onClick={() => changeNav('openSubSport')}>
-                            <img className="nav__icon" src={require('./img/tennisball.png')} alt="" width={30} height={30} />
-                            <ListItemText primary="Sports" />
-                            {nav.openSubSport ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-
-                        {sports.map(item => {
-                            return (
-                                <Collapse in={nav.openSubSport} timeout="auto" unmountOnExit>
-                                    <List className="nav__sublist" component="div" disablePadding>
-                                        <ListItemButton className="nav__subitem" sx={{ pl: 4 }} onClick={() => window.open(item.url, '_blank')}>
-                                            <ListItemText primary={item.name} />
-                                        </ListItemButton>
-                                    </List>
-                                </Collapse>
-                            );
-                        })}
-                    </List>
-                </Collapse>
-
-                <Collapse in={nav.open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItemButton className="nav__item" onClick={() => changeNav('openSubBusiness')}>
-                            <img className="nav__icon" src={require('./img/graphics.png')} alt="" width={30} height={30} />
-                            <ListItemText primary="Business" />
-                            {nav.openSubBusiness ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-
-                        {businesses.map(item => {
-                            return (
-                                <Collapse in={nav.openSubBusiness} timeout="auto" unmountOnExit>
-                                    <List className="nav__sublist" component="div" disablePadding>
-                                        <ListItemButton className="nav__subitem" sx={{ pl: 4 }} onClick={() => window.open(item.url, '_blank')}>
-                                            <ListItemText primary={item.name} />
-                                        </ListItemButton>
-                                    </List>
-                                </Collapse>
-                            );
-                        })}
-                    </List>
-                </Collapse>
-
-                <Collapse in={nav.open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItemButton className="nav__item" onClick={() => changeNav('openSubCrypto')}>
-                            <img className="nav__icon" src={require('./img/crypto.png')} alt="" width={30} height={30} />
-                            <ListItemText primary="Crypto" />
-                            {nav.openSubCrypto ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-
-                        {cryptos.map(item => {
-                            return (
-                                <Collapse in={nav.openSubCrypto} timeout="auto" unmountOnExit>
-                                    <List className="nav__sublist" component="div" disablePadding>
-                                        <ListItemButton className="nav__subitem" sx={{ pl: 4 }} onClick={() => window.open(item.url, '_blank')}>
-                                            <ListItemText primary={item.name} />
-                                        </ListItemButton>
-                                    </List>
-                                </Collapse>
-                            );
-                        })}
-                    </List>
-                </Collapse>
-
-                <Collapse in={nav.open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItemButton className="nav__item" onClick={() => changeNav('openSubTv')}>
-                            <img className="nav__icon" src={require('./img/tv.png')} alt="" width={30} height={30} />
-                            <ListItemText primary="Television" />
-                            {nav.openSubTv ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-
-                        {televisions.map(item => {
-                            return (
-                                <Collapse in={nav.openSubTv} timeout="auto" unmountOnExit>
-                                    <List className="nav__sublist" component="div" disablePadding>
-                                        <ListItemButton className="nav__subitem" sx={{ pl: 4 }} onClick={() => window.open(item.url, '_blank')}>
-                                            <ListItemText primary={item.name} />
-                                        </ListItemButton>
-                                    </List>
-                                </Collapse>
-                            );
-                        })}
-                    </List>
-                </Collapse>
-
-                <Collapse in={nav.open} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItemButton className="nav__item" onClick={() => changeNav('openSubCelebrity')}>
-                            <img className="nav__icon" src={require('./img/star.png')} alt="" width={30} height={30} />
-                            <ListItemText primary="Celebrity" />
-                            {nav.openSubCelebrity ? <ExpandLess /> : <ExpandMore />}
-                        </ListItemButton>
-
-                        {celebrities.map(item => {
-                            return (
-                                <Collapse in={nav.openSubCelebrity} timeout="auto" unmountOnExit>
-                                    <List className="nav__sublist" component="div" disablePadding>
-                                        <ListItemButton className="nav__subitem" sx={{ pl: 4 }} onClick={() => window.open(item.url, '_blank')}>
-                                            <ListItemText primary={item.name} />
-                                        </ListItemButton>
-                                    </List>
-                                </Collapse>
-                            );
-                        })}
-                    </List>
-                </Collapse>
+            <List className="nav__list nav__list-padding" sx={{ width: '100%', maxWidth: 220 }}>
+                {Topics.map((data, index) => {
+                    return <LinkComponent key={index} data={data} nav={nav} changeNav={changeNav} />;
+                })}
             </List>
 
             <List className="nav__list" sx={{ width: '100%', maxWidth: 220 }}>
@@ -244,6 +109,9 @@ const Nav = () => {
                     </List>
                 </Collapse>
             </List>
+            <a href="https://www.redditinc.com/" className="nav__copyright">
+                Reddit, Inc. &copy; 2024. All rights reserved.
+            </a>
         </div>
     );
 };
