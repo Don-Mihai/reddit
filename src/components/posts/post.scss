@@ -1,0 +1,50 @@
+.card {
+    margin: 30px;
+    cursor: pointer;
+}
+
+
+.card_header {
+    justify-content: space-between;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.button {
+    text-align: right;
+    padding: auto;
+    margin-top: auto;
+}
+
+.card_join {
+    width: 70px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: blue;
+    color: #eee;
+    cursor: pointer;
+
+}
+
+.card_option {
+    width: 70px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.card .card_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #eee;
+    margin: 5px;
+    padding: 5px;
+
+}
+
+.card_footer {
+    text-align: left;
+    display: inline;
+}

@@ -171,7 +171,7 @@ const Nav = () => {
                         })}
                     </List>
                 </Collapse>
-                <Button className="nav__button" onClick={() => changeNav('open')} variant="contained">
+                <Button className="nav__button" onClick={() => changeNav('openSubTopics')} variant="contained">
                     See more
                 </Button>
             </List>

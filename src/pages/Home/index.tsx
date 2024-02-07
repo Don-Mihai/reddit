@@ -1,6 +1,7 @@
 import Header from '../../components/Header';
 import Nav from '../../components/Nav/Nav';
 import './Home.scss';
+import Post from '../../components/posts/Post';
 
 const Home = () => {
     return (
@@ -9,12 +10,12 @@ const Home = () => {
             <main className="main">
                 <Nav />
                 <div className="content"></div>
-
+                <Post />
                 <aside className="aside">
                     <div className="aside__popular">POPULAR COMMUNITIES</div>
                     <div className="aside__popular-list">
                         <div className="popular-list__container">
-                            <a className="logo" target='blank' href="">
+                            <a className="logo" target="blank" href="">
                                 <img className="logo__img" src="./Popular/Images/eli5.jpg"></img>
                                 <div className="logo__name">
                                     <div className="logo__name__text">r/explainlikeimfive</div>

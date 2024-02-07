@@ -166,3 +166,17 @@ export const initialState: INavState = {
     openSubTopics: false,
     openSubResources: false,
 };
+
+const Topics = [
+    {
+        title: 'TOPICS',
+        sublinks: [
+            { name: 'Gaming', sublinks: games },
+            { name: 'Sports', sublinks: sports },
+            { name: 'Business', sublinks: businesses },
+            { name: 'Crypto', sublinks: cryptos },
+            { name: 'Television', sublinks: televisions },
+            { name: 'Celebrity', sublinks: celebrities },
+        ],
+    },
+];
