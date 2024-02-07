@@ -174,20 +174,6 @@ export const initialState: INavState = {
     openSubResources: false,
 };
 
-const Topics1 = [
-    {
-        title: 'TOPICS',
-        sublinks: [
-            { name: 'Gaming', sublinks: games },
-            { name: 'Sports', sublinks: sports },
-            { name: 'Business', sublinks: businesses },
-            { name: 'Crypto', sublinks: cryptos },
-            { name: 'Television', sublinks: televisions },
-            { name: 'Celebrity', sublinks: celebrities },
-        ],
-    },
-];
-
 export const Topics = [
     {
         name: 'HOME',

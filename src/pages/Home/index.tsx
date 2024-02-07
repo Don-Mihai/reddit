@@ -1,7 +1,6 @@
 import Header from '../../components/Header';
 import Nav from '../../components/Nav/Nav';
 import './Home.scss';
-import Post from '../../components/posts/Post';
 
 const Home = () => {
     return (
@@ -10,7 +9,7 @@ const Home = () => {
             <main className="main">
                 <Nav />
                 <div className="content"></div>
-                <Post />
+
                 <aside className="aside">
                     <div className="aside__popular">POPULAR COMMUNITIES</div>
                     <div className="aside__popular-list">
