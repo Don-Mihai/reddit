@@ -5,6 +5,7 @@ import './LinkComponent.scss';
 
 const LinkComponent = ({ data, changeNav, nav }: any) => {
     const [isActive, setisActive] = useState(false);
+	const isShowImg = Boolean(data?.imgUrl);
 
     // const check = () => {
     // 	setisActive(currentUrl === data.url);
@@ -14,7 +15,7 @@ const LinkComponent = ({ data, changeNav, nav }: any) => {
     return (
         <div className="component-link">
             <ListItemButton className={`nav__title ${isActive ? 'active' : ''}`} onClick={() => changeNav?.(data?.objKey)}>
-                {data?.imgUrl && <img className="component-link__image" src={data?.imgUrl} alt="" />}
+                {isShowImg && <img className="component-link__image" src={data?.imgUrl} alt="" />}
                 <span className="component-link__text">{data.name}</span>
                 {data?.objKey && <>{nav?.[data?.objKey] ? <ExpandLess /> : <ExpandMore />}</>}
             </ListItemButton>
