@@ -2,6 +2,7 @@ import Header from '../../components/Header';
 import Nav from '../../components/Nav/Nav';
 import './Home.scss';
 import Post from '../../components/Post/post';
+import { posts } from './utils';
 
 const Home = () => {
     return (
@@ -10,7 +11,9 @@ const Home = () => {
             <main className="main">
                 <Nav />
                 <div className="content">
-                    <Post />
+                    {posts.map(post => {
+                        return <Post post={post} />;
+                    })}
                 </div>
 
                 <aside className="aside">

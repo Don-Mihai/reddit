@@ -1,5 +1,11 @@
+import { IPost } from '../../pages/Home/utils';
 import './post.scss';
-const Post = () => {
+
+interface Props {
+    post: IPost;
+}
+
+const Post = ({ post }: Props) => {
     return (
         <div className="post">
             <div className="Header">
