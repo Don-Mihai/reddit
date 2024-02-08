@@ -23,7 +23,7 @@ const LinkComponent = ({ data, changeNav, nav }: any) => {
                     <List component="div" disablePadding>
                         {data.sublinks.map((sublink: any, index: any) => (
                             <li key={index}>
-                                <LinkComponent data={sublink} />
+                                <LinkComponent data={sublink} changeNav={changeNav} nav={nav} />
                             </li>
                         ))}
                     </List>
