@@ -178,12 +178,12 @@ export const Topics = [
     {
         name: 'HOME',
         url: '',
-        imgUrl: '',
+        imgUrl: require('./img/home.png'),
     },
     {
         name: 'POPULAR',
         url: '',
-        imgUrl: '',
+        imgUrl: require('./img/arrow.png'),
     },
     {
         name: 'TOPICS',
@@ -191,12 +191,12 @@ export const Topics = [
         imgUrl: '',
         objKey: 'open',
         sublinks: [
-            { name: 'Gaming', url: '', imgUrl: '', sublinks: games },
-            { name: 'Sports', url: '', imgUrl: '', sublinks: sports },
-            { name: 'Business', url: '', imgUrl: '', sublinks: businesses },
-            { name: 'Crypto', url: '', imgUrl: '', sublinks: cryptos },
-            { name: 'Television', url: '', imgUrl: '', sublinks: televisions },
-            { name: 'Celebrity', url: '', imgUrl: '', sublinks: celebrities },
+            { name: 'Gaming', url: '', imgUrl: require('./img/joystick.png'), objKey: 'openSubGame', sublinks: games },
+            { name: 'Sports', url: '', imgUrl: require('./img/tennisball.png'), sublinks: sports },
+            { name: 'Business', url: '', imgUrl: require('./img/arrow.png'), sublinks: businesses },
+            { name: 'Crypto', url: '', imgUrl: require('./img/arrow.png'), sublinks: cryptos },
+            { name: 'Television', url: '', imgUrl: require('./img/arrow.png'), sublinks: televisions },
+            { name: 'Celebrity', url: '', imgUrl: require('./img/arrow.png'), sublinks: celebrities },
         ],
     },
     {
