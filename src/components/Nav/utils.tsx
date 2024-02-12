@@ -1,12 +1,14 @@
 interface INav {
-    name: string;
+    name?: string;
+    subname?: string;
     url: string;
+    imgUrl?: string;
     src?: string;
 }
 
 export const mainNav = [
-    { name: 'Home', url: 'https://www.reddit.com/?feed=home', src: require('./img/home.png') },
-    { name: 'Popular', url: 'https://www.reddit.com/r/popular/', src: require('./img/arrow.png') },
+    { name: 'Home', url: 'https://www.reddit.com/?feed=home', imgUrl: require('./img/home.png') },
+    { name: 'Popular', url: 'https://www.reddit.com/r/popular/', imgUrl: require('./img/arrow.png') },
 ];
 
 export const games: INav[] = [
@@ -83,58 +85,6 @@ export const celebrities = [
     { name: 'Keanu Reeves', url: 'https://www.reddit.com/t/keanu_reeves/' },
 ];
 
-export const subTopics: INav[] = [
-    { name: 'Animals & Pets', url: 'https://www.reddit.com/t/animals_and_pets/', src: require('./img/pets.png') },
-    { name: 'Anime', url: 'https://www.reddit.com/t/anime/', src: require('./img/anime.png') },
-    { name: 'Art', url: 'https://www.reddit.com/t/art/', src: require('./img/art.png') },
-    { name: 'Cars and Motor Vehicles', url: 'https://www.reddit.com/t/cars_and_motor_vehicles/', src: require('./img/wheel.png') },
-    { name: 'Crafts and DIY', url: 'https://www.reddit.com/t/crafts_and_diy/', src: require('./img/tractor.png') },
-    { name: 'Culture, Race, and Ethnicity', url: 'https://www.reddit.com/t/culture_race_and_ethnicity/', src: require('./img/race.png') },
-    { name: 'Ethics & Philosophy', url: 'https://www.reddit.com/t/ethics_and_philosophy/', src: require('./img/philosophy.png') },
-    { name: 'Fashion', url: 'https://www.reddit.com/t/fashion/', src: require('./img/fashion.png') },
-    { name: 'History', url: 'https://www.reddit.com/t/history/', src: require('./img/history.png') },
-    { name: 'Law', url: 'https://www.reddit.com/t/law/', src: require('./img/law.png') },
-    { name: 'Learning and Education', url: 'https://www.reddit.com/t/learning_and_education/', src: require('./img/education.png') },
-    { name: 'Military', url: 'https://www.reddit.com/t/military/', src: require('./img/military.png') },
-    { name: 'Movie', url: 'https://www.reddit.com/t/movie/', src: require('./img/movie.png') },
-    { name: 'Music', url: 'https://www.reddit.com/t/music/', src: require('./img/music.png') },
-    { name: 'Place', url: 'https://www.reddit.com/t/place/', src: require('./img/place.png') },
-    { name: 'Podcasts and Streamers', url: 'https://www.reddit.com/t/podcasts_and_streamers/', src: require('./img/podcast.png') },
-    { name: 'Politics', url: 'https://www.reddit.com/t/politics/', src: require('./img/politics.png') },
-    { name: 'Programming', url: 'https://www.reddit.com/t/programming/', src: require('./img/programming.png') },
-    { name: 'Reading, Writing, and Literature', url: 'https://www.reddit.com/t/reading_writing_and_literature/', src: require('./img/book.png') },
-    { name: 'Religion and Spirituality', url: 'https://www.reddit.com/t/religion_and_spirituality/', src: require('./img/candle.png') },
-    { name: 'Science', url: 'https://www.reddit.com/t/science/', src: require('./img/flask.png') },
-    { name: 'Technology', url: 'https://www.reddit.com/t/technology/', src: require('./img/technology.png') },
-    { name: 'Travel', url: 'https://www.reddit.com/t/travel/', src: require('./img/travel.png') },
-];
-
-export const resources = [
-    { name: 'About Reddit', url: 'https://www.redditinc.com/', src: require('./img/about.png') },
-    {
-        name: 'Advertise',
-        url: 'https://accounts.reddit.com/adsregister?dest=https%3A%2F%2Fads.reddit.com%2F&referrer=https%3A%2F%2Fwww.reddit.com%2F&utm_source=web3x_consumer&utm_name=left_nav_cta',
-        src: require('./img/advertise.png'),
-    },
-    { name: 'Help', url: 'https://support.reddithelp.com/hc/en-us', src: require('./img/help.png') },
-    { name: 'Blog', url: 'https://www.redditinc.com/blog', src: require('./img/blog.png') },
-    { name: 'Careers', url: 'https://www.redditinc.com/careers', src: require('./img/career.png') },
-    { name: 'Press', url: 'https://www.redditinc.com/press', src: require('./img/micro.png') },
-];
-
-export const subResources = [
-    { name: 'Communities', url: 'https://www.reddit.com/best/communities/1/', src: require('./img/communities.png') },
-    {
-        name: 'Best of Reddit',
-        url: 'https://www.reddit.com/posts/2023/',
-        src: require('./img/hourglass.png'),
-    },
-    { name: 'Topics', url: 'https://www.reddit.com/topics/a-1/', src: require('./img/topics.png') },
-    { name: 'Content Policy', url: 'https://www.redditinc.com/policies/content-policy', src: require('./img/content.png') },
-    { name: 'Privacy Policy', url: 'https://www.reddit.com/policies/privacy-policy', src: require('./img/privacy.png') },
-    { name: 'User Agreement', url: 'https://www.redditinc.com/policies/user-agreement', src: require('./img/agree.png') },
-];
-
 export const languages = [
     { name: 'English / Global', url: 'https://www.reddit.com/' },
     { name: 'Deutsch', url: 'https://www.reddit.com/de/' },
@@ -177,12 +127,12 @@ export const initialState: INavState = {
 export const Topics = [
     {
         name: 'HOME',
-        url: '',
+        url: 'https://www.reddit.com/?feed=home',
         imgUrl: require('./img/home.png'),
     },
     {
         name: 'POPULAR',
-        url: '',
+        url: 'https://www.reddit.com/r/popular/',
         imgUrl: require('./img/arrow.png'),
     },
     {
@@ -191,25 +141,75 @@ export const Topics = [
         imgUrl: '',
         objKey: 'open',
         sublinks: [
-            { name: 'Gaming', url: '', imgUrl: require('./img/joystick.png'), objKey: 'openSubGame', sublinks: games },
-            { name: 'Sports', url: '', imgUrl: require('./img/tennisball.png'), objKey: 'openSubSport', sublinks: sports },
-            { name: 'Business', url: '', imgUrl: require('./img/graphics.png'), objKey: 'openSubBusiness', sublinks: businesses },
-            { name: 'Crypto', url: '', imgUrl: require('./img/crypto.png'), objKey: 'openSubCrypto', sublinks: cryptos },
-            { name: 'Television', url: '', imgUrl: require('./img/tv.png'), objKey: 'openSubTv', sublinks: televisions },
-            { name: 'Celebrity', url: '', imgUrl: require('./img/star.png'), objKey: 'openSubCelebrity', sublinks: celebrities },
+            { name: 'Gaming', imgUrl: require('./img/joystick.png'), objKey: 'openSubGame', sublinks: games },
+            { name: 'Sports', imgUrl: require('./img/tennisball.png'), objKey: 'openSubSport', sublinks: sports },
+            { name: 'Business', imgUrl: require('./img/graphics.png'), objKey: 'openSubBusiness', sublinks: businesses },
+            { name: 'Crypto', imgUrl: require('./img/crypto.png'), objKey: 'openSubCrypto', sublinks: cryptos },
+            { name: 'Television', imgUrl: require('./img/tv.png'), objKey: 'openSubTv', sublinks: televisions },
+            { name: 'Celebrity', imgUrl: require('./img/star.png'), objKey: 'openSubCelebrity', sublinks: celebrities },
         ],
     },
     {
+        objKey: 'openSubTopics',
+        sublinks: [
+            { name: 'Animals & Pets', url: 'https://www.reddit.com/t/animals_and_pets/', imgUrl: require('./img/pets.png') },
+            { name: 'Anime', url: 'https://www.reddit.com/t/anime/', imgUrl: require('./img/anime.png') },
+            { name: 'Art', url: 'https://www.reddit.com/t/art/', imgUrl: require('./img/art.png') },
+            { name: 'Cars and Motor Vehicles', url: 'https://www.reddit.com/t/cars_and_motor_vehicles/', imgUrl: require('./img/wheel.png') },
+            { name: 'Crafts and DIY', url: 'https://www.reddit.com/t/crafts_and_diy/', imgUrl: require('./img/tractor.png') },
+            { name: 'Culture, Race, and Ethnicity', url: 'https://www.reddit.com/t/culture_race_and_ethnicity/', imgUrl: require('./img/race.png') },
+            { name: 'Ethics & Philosophy', url: 'https://www.reddit.com/t/ethics_and_philosophy/', imgUrl: require('./img/philosophy.png') },
+            { name: 'Fashion', url: 'https://www.reddit.com/t/fashion/', imgUrl: require('./img/fashion.png') },
+            { name: 'History', url: 'https://www.reddit.com/t/history/', imgUrl: require('./img/history.png') },
+            { name: 'Law', url: 'https://www.reddit.com/t/law/', imgUrl: require('./img/law.png') },
+            { name: 'Learning and Education', url: 'https://www.reddit.com/t/learning_and_education/', imgUrl: require('./img/education.png') },
+            { name: 'Military', url: 'https://www.reddit.com/t/military/', imgUrl: require('./img/military.png') },
+            { name: 'Movie', url: 'https://www.reddit.com/t/movie/', imgUrl: require('./img/movie.png') },
+            { name: 'Music', url: 'https://www.reddit.com/t/music/', imgUrl: require('./img/music.png') },
+            { name: 'Place', url: 'https://www.reddit.com/t/place/', imgUrl: require('./img/place.png') },
+            { name: 'Podcasts and Streamers', url: 'https://www.reddit.com/t/podcasts_and_streamers/', imgUrl: require('./img/podcast.png') },
+            { name: 'Politics', url: 'https://www.reddit.com/t/politics/', imgUrl: require('./img/politics.png') },
+            { name: 'Programming', url: 'https://www.reddit.com/t/programming/', imgUrl: require('./img/programming.png') },
+            { name: 'Reading, Writing, and Literature', url: 'https://www.reddit.com/t/reading_writing_and_literature/', imgUrl: require('./img/book.png') },
+            { name: 'Religion and Spirituality', url: 'https://www.reddit.com/t/religion_and_spirituality/', imgUrl: require('./img/candle.png') },
+            { name: 'Science', url: 'https://www.reddit.com/t/science/', imgUrl: require('./img/flask.png') },
+            { name: 'Technology', url: 'https://www.reddit.com/t/technology/', imgUrl: require('./img/technology.png') },
+            { name: 'Travel', url: 'https://www.reddit.com/t/travel/', imgUrl: require('./img/travel.png') },
+        ],
+        isBottomMenu: true,
+    },
+    {
         name: 'RESOURCES',
-        url: '',
-        imgUrl: '',
         objKey: 'openResource',
-        sublinks: resources,
+        sublinks: [
+            { name: 'About Reddit', url: 'https://www.redditinc.com/', imgUrl: require('./img/about.png') },
+            {
+                name: 'Advertise',
+                url: 'https://accounts.reddit.com/adsregister?dest=https%3A%2F%2Fads.reddit.com%2F&referrer=https%3A%2F%2Fwww.reddit.com%2F&utm_source=web3x_consumer&utm_name=left_nav_cta',
+                imgUrl: require('./img/advertise.png'),
+            },
+            { name: 'Help', url: 'https://support.reddithelp.com/hc/en-us', imgUrl: require('./img/help.png') },
+            { name: 'Blog', url: 'https://www.redditinc.com/blog', imgUrl: require('./img/blog.png') },
+            { name: 'Careers', url: 'https://www.redditinc.com/careers', imgUrl: require('./img/career.png') },
+            { name: 'Press', url: 'https://www.redditinc.com/press', imgUrl: require('./img/micro.png') },
+        ],
+    },
+
+    {
+        objKey: 'openSubResources',
+        sublinks: [
+            { name: 'Communities', url: 'https://www.reddit.com/best/communities/1/', imgUrl: require('./img/communities.png') },
+            { name: 'Best of Reddit', url: 'https://www.reddit.com/posts/2023/', imgUrl: require('./img/hourglass.png') },
+            { name: 'Topics', url: 'https://www.reddit.com/topics/a-1/', imgUrl: require('./img/topics.png') },
+            { name: 'Content Policy', url: 'https://www.redditinc.com/policies/content-policy', imgUrl: require('./img/content.png') },
+            { name: 'Privacy Policy', url: 'https://www.reddit.com/policies/privacy-policy', imgUrl: require('./img/privacy.png') },
+            { name: 'User Agreement', url: 'https://www.redditinc.com/policies/user-agreement', imgUrl: require('./img/agree.png') },
+        ],
+        isBottomMenu: true,
     },
     {
         name: 'POPULAR POSTS',
         url: '',
-        imgUrl: '',
         objKey: 'openLang',
         sublinks: languages,
     },

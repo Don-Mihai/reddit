@@ -4,7 +4,7 @@ const Popular = () => {
     return (
         <div>
             <Header />
-            <Post />
+            {/* <Post /> */}
             popular
         </div>
     );
