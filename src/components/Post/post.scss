@@ -3,10 +3,12 @@
     height: 700px;
     border: 1px gray;
     border-radius: 5px;
+    .image {
+        img {
+            width: 100%;
+        }
+    }
 }
-
-
-
 
 .Header {
     display: flex;
@@ -44,12 +46,10 @@
     border: 1px rgb(101, 101, 101);
 }
 
-
 .content {
     margin-top: 10px;
     padding: 10px;
 }
-
 
 .footer {
     display: flex;
@@ -70,7 +70,6 @@
     cursor: pointer;
     border-radius: 15px;
     border: 1px rgb(100, 100, 100);
-
 }
 
 .comment {
@@ -80,7 +79,6 @@
     cursor: pointer;
     border-radius: 15px;
     border: 1px rgb(100, 100, 100);
-
 }
 
 .repost {
