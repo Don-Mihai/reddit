@@ -2,18 +2,50 @@ import Header from '../../components/Header';
 import Nav from '../../components/Nav/Nav';
 import './Home.scss';
 import Post from '../../components/Post/post';
-import { posts } from './utils';
+import { IPost, posts } from './utils';
+import CreatePost from '../../components/CreatePost';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
+    const [formValues, setFormValues]: any = useState(posts);
+    const [postsNew, setPostsNew]: any = useState(posts);
+    const initialState = { title: '', text: '', contentUrl: '' };
+
+    const clear = () => {
+        setFormValues(initialState);
+    };
+
+    const addPost = () => {
+        setPostsNew([
+            ...postsNew,
+            {
+                title: formValues.title,
+                text: formValues.text,
+                contentUrl: formValues.contentUrl,
+            },
+        ]);
+
+        clear();
+    };
+
+    const onchange = (event: any) => {
+        const key = event.target.name;
+        const value = event.target.value;
+        setFormValues({ ...formValues, [key]: value });
+    };
+
     return (
         <div>
             <Header />
             <main className="main">
                 <Nav />
                 <div className="content">
-                    {posts.map(post => {
-                        return <Post post={post} />;
-                    })}
+                    <CreatePost addPost={addPost} onchange={onchange} />
+                    <div className="posts">
+                        {postsNew.map((post: any) => {
+                            return <Post post={post} />;
+                        })}
+                    </div>
                 </div>
 
                 <aside className="aside">

@@ -2,10 +2,10 @@ import { IPost } from '../../pages/Home/utils';
 import './post.scss';
 
 interface Props {
-    post: IPost;
+    Ipost: IPost;
 }
 
-const Post = ({ post }: Props) => {
+const Post = ({ post }: any) => {
     return (
         <div className="post">
             <div className="Header">
@@ -13,7 +13,7 @@ const Post = ({ post }: Props) => {
                     <div className="icon">
                         <img src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
                     </div>
-                    <div className="title">{post.title}</div>
+                    <div className="title">{post?.title}</div>
                 </div>
                 <div className="buttons">
                     <button className="join">join</button>
@@ -31,9 +31,9 @@ const Post = ({ post }: Props) => {
                 </div>
             </div>
             <div className="content">
-                <span className="cats_text">{post.text}</span>
+                <span className="cats_text">{post?.text}</span>
                 <div className="image">
-                    <img src={post.contentUrl} alt="cats" />
+                    <img src={post?.contentUrl} alt="cats" />
                 </div>
             </div>
             <div className="footer">

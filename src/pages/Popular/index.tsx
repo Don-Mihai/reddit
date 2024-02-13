@@ -5,9 +5,11 @@ const Popular = () => {
     return (
         <div>
             <Header />
-            {posts.map(post => {
-                return <Post post={post} />;
-            })}
+            <div className="content">
+                {posts.map(post => {
+                    return <Post post={post} />;
+                })}
+            </div>
             popular
         </div>
     );
