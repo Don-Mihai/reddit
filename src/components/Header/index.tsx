@@ -23,9 +23,9 @@ const Header = () => {
     return (
         <header className="header">
             <Tooltip title="Go to Reddit Home" arrow className="header__tooltip">
-                <div className="logo">
-                    <img className="logo__img" src={require('./logo.png')} />
-                    <img className="logo__img-wordmark" src={require('./wordmark.png')} />
+                <div className="header__logo">
+                    <img className="header__logo__img" src={require('./img/logo.png')} />
+                    <img className="header__logo__img-wordmark" src={require('./img/wordmark.png')} />
                 </div>
             </Tooltip>
             <div className="header__input">
@@ -33,7 +33,7 @@ const Header = () => {
             </div>
             <div className="actions">
                 <Button className="actions__app-btn btn" variant="contained">
-                    <img className="actions__app-img" src={require('./qr.png')} />
+                    <img className="actions__app-img" src={require('./img/qr.png')} />
                     <div>Get app</div>
                 </Button>
                 <Button className="actions__login-btn btn" onClick={onOpen} variant="contained">
