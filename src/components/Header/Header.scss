@@ -21,12 +21,26 @@ $red-color: #d93a00;
         border-radius: 25px;
         border: none;
         background-color: $semi-white;
-        background-image: url('./search.png');
+        background-image: url('./img/search.png');
         background-size: 16px;
         background-repeat: no-repeat;
         background-position: 2%;
         &:hover {
             background-color: $semi-grey;
+        }
+    }
+    &__logo {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        cursor: pointer;
+        &__img {
+            width: auto;
+            height: 38px;
+            &-wordmark {
+                height: 22px;
+                width: auto;
+            }
         }
     }
 }
@@ -92,20 +106,7 @@ $red-color: #d93a00;
     }
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    cursor: pointer;
-    &__img {
-        width: auto;
-        height: 38px;
-        &-wordmark {
-            height: 22px;
-            width: auto;
-        }
-    }
-}
+
 
 .modal {
 	&__wrap {

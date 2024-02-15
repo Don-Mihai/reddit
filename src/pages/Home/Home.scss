@@ -25,11 +25,10 @@
             height: 56px;
         }
     }
-    
 }
 
 .main {
-	display: flex;
+    display: flex;
 }
 
 .logo {
@@ -42,7 +41,7 @@
         width: 300px;
         background-color: #2a3c421f;
         border-radius: 5px;
-      }
+    }
 
     &__img {
         width: 30px;
@@ -63,8 +62,13 @@
 
         &__members {
             align-items: center;
-            font-size: 12px; 
+            font-size: 12px;
             padding-top: 5px;
         }
     }
+}
+
+.posts {
+    display: flex;
+    flex-direction: column-reverse;
 }
