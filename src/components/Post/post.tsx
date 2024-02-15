@@ -1,3 +1,7 @@
+import { Menu, MenuItem } from '@mui/material';
+import { IconButton } from '@mui/material';
+import { useState } from 'react';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { IPost } from '../../pages/Home/utils';
 import './post.scss';
 
@@ -6,6 +10,15 @@ interface Props {
 }
 
 const Post = ({ post }: any) => {
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+    const open = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     return (
         <div className="post">
             <div className="Header">
@@ -17,17 +30,20 @@ const Post = ({ post }: any) => {
                 </div>
                 <div className="buttons">
                     <button className="join">join</button>
-                    <button className="option">
-                        <svg
-                            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                            focusable="false"
-                            aria-hidden="true"
-                            viewBox="0 0 24 24"
-                            data-testid="MoreHorizIcon"
-                        >
-                            <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2m12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2m-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2"></path>
-                        </svg>
-                    </button>
+                    <IconButton className="actions__icon-btn btn" onClick={handleClick}>
+                        <MoreHorizIcon />
+                    </IconButton>
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        MenuListProps={{
+                            'aria-labelledby': 'basic-button',
+                        }}
+                    >
+                        <MenuItem onClick={handleClose}>Удалить пост</MenuItem>
+                    </Menu>
                 </div>
             </div>
             <div className="content">
