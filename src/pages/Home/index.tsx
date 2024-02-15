@@ -5,25 +5,23 @@ import Post from '../../components/Post/post';
 import { IPost, posts } from './utils';
 import CreatePost from '../../components/CreatePost';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
+const initialState = { title: '', text: '', contentUrl: '' };
 
 const Home = () => {
-    const [formValues, setFormValues]: any = useState(posts);
-    const [postsNew, setPostsNew]: any = useState(posts);
-    const initialState = { title: '', text: '', contentUrl: '' };
-
+    const [formValues, setFormValues]: any = useState(initialState);
+    const [posts, setPosts]: any = useState([]);
+    useEffect(() => {
+        getPosts();
+    }, []);
     const clear = () => {
         setFormValues(initialState);
     };
 
-    const addPost = () => {
-        setPostsNew([
-            ...postsNew,
-            {
-                title: formValues.title,
-                text: formValues.text,
-                contentUrl: formValues.contentUrl,
-            },
-        ]);
+    const addPost = async () => {
+        const payload = { title: formValues.title, text: formValues.text, contentUrl: formValues.contentUrl };
+        const resPost = (await axios.post('http://localhost:3001/posts', payload)).data;
+        setPosts([...posts, resPost]);
 
         clear();
     };
@@ -34,15 +32,21 @@ const Home = () => {
         setFormValues({ ...formValues, [key]: value });
     };
 
+    const getPosts = async () => {
+        const posts = (await axios.get('http://localhost:3001/posts')).data;
+        setPosts(posts);
+        console.log(posts);
+    };
+
     return (
         <div>
             <Header />
             <main className="main">
                 <Nav />
                 <div className="content">
-                    <CreatePost addPost={addPost} onchange={onchange} />
+                    <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />
                     <div className="posts">
-                        {postsNew.map((post: any) => {
+                        {posts.map((post: any) => {
                             return <Post post={post} />;
                         })}
                     </div>
