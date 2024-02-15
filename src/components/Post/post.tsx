@@ -1,7 +1,9 @@
-import { Menu, MenuItem } from '@mui/material';
+import { Menu, MenuItem, TextField, TextareaAutosize } from '@mui/material';
 import { IconButton } from '@mui/material';
 import { useState } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 import { IPost } from '../../pages/Home/utils';
 import './post.scss';
 import axios from 'axios';
@@ -13,6 +15,8 @@ interface Props {
 
 const Post = ({ post, onDelete }: Props) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [isEditMode, setIsEditMode] = useState(false);
+    const [formValues, setFormValues] = useState(post);
 
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -22,11 +26,32 @@ const Post = ({ post, onDelete }: Props) => {
         setAnchorEl(null);
     };
 
+    const onChange = (event: any) => {
+        const key = event.target.name;
+        const value = event.target.value;
+        setFormValues({ ...formValues, [key]: value });
+    };
+
     const deletePost = async () => {
         onDelete(post.id);
 
         handleClose();
     };
+
+    const editPost = () => {
+        setIsEditMode(true);
+    };
+
+    const saveChanges = async() => {
+        await axios.put(`http://localhost:3001/posts/${post.id}`, formValues);
+
+        setIsEditMode(false);
+    };
+
+	const cancelChanges = () => {
+		setFormValues(post)
+		setIsEditMode(false);
+	}
 
     return (
         <div className="post">
@@ -35,13 +60,27 @@ const Post = ({ post, onDelete }: Props) => {
                     <div className="icon">
                         <img src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
                     </div>
-                    <div className="title">{post?.title}</div>
+                    {!isEditMode ? <div className="title">{post?.title}</div> : <TextField name="title" onChange={onChange} value={formValues?.title} />}
                 </div>
                 <div className="buttons">
-                    <button className="join">join</button>
-                    <IconButton className="actions__icon-btn btn" onClick={handleClick}>
-                        <MoreHorizIcon />
-                    </IconButton>
+                    {isEditMode ? (
+                        <>
+                            <IconButton color="success" className="actions__icon-btn btn" onClick={saveChanges}>
+                                <CheckIcon />
+                            </IconButton>
+                            <IconButton color="error" className="actions__icon-btn btn" onClick={cancelChanges}>
+                                <ClearIcon />
+                            </IconButton>
+                        </>
+                    ) : (
+                        <>
+                            <button className="join">join</button>
+                            <IconButton className="actions__icon-btn btn" onClick={handleClick}>
+                                <MoreHorizIcon />
+                            </IconButton>
+                        </>
+                    )}
+
                     <Menu
                         id="basic-menu"
                         anchorEl={anchorEl}
@@ -51,12 +90,14 @@ const Post = ({ post, onDelete }: Props) => {
                             'aria-labelledby': 'basic-button',
                         }}
                     >
-                        <MenuItem onClick={deletePost}>Удалить пост</MenuItem>
+                        <MenuItem onClick={deletePost}>Удалить</MenuItem>
+                        <MenuItem onClick={editPost}>Редактировать</MenuItem>
                     </Menu>
                 </div>
             </div>
             <div className="content">
-                <span className="cats_text">{post?.text}</span>
+                {!isEditMode ? <span className="cats_text">{post?.text}</span> : <TextareaAutosize name="text" onChange={onChange} value={formValues?.text} />}
+
                 <div className="image">
                     <img src={post?.contentUrl} alt="cats" />
                 </div>
