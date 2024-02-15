@@ -4,12 +4,14 @@ import { useState } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { IPost } from '../../pages/Home/utils';
 import './post.scss';
+import axios from 'axios';
 
 interface Props {
-    Ipost: IPost;
+    post: IPost;
+    onDelete: (postId: number | string) => void;
 }
 
-const Post = ({ post }: any) => {
+const Post = ({ post, onDelete }: Props) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
     const open = Boolean(anchorEl);
@@ -19,6 +21,13 @@ const Post = ({ post }: any) => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const deletePost = async () => {
+        onDelete(post.id);
+
+        handleClose();
+    };
+
     return (
         <div className="post">
             <div className="Header">
@@ -42,7 +51,7 @@ const Post = ({ post }: any) => {
                             'aria-labelledby': 'basic-button',
                         }}
                     >
-                        <MenuItem onClick={handleClose}>Удалить пост</MenuItem>
+                        <MenuItem onClick={deletePost}>Удалить пост</MenuItem>
                     </Menu>
                 </div>
             </div>

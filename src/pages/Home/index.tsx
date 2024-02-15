@@ -2,11 +2,11 @@ import Header from '../../components/Header';
 import Nav from '../../components/Nav/Nav';
 import './Home.scss';
 import Post from '../../components/Post/post';
-import { IPost, posts } from './utils';
 import CreatePost from '../../components/CreatePost';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Popular from './Popular';
+import { IPost } from './utils';
 const initialState = { title: '', text: '', contentUrl: '' };
 
 const Home = () => {
@@ -46,6 +46,12 @@ const Home = () => {
         setPosts(posts);
     };
 
+    const onDelete = async (postId: number | string) => {
+        await axios.delete(`http://localhost:3001/posts/${postId}`);
+
+        setPosts(posts.filter((post: IPost) => post.id !== postId));
+    };
+
     return (
         <div>
             <Header />
@@ -55,7 +61,7 @@ const Home = () => {
                     <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />
                     <div className="posts">
                         {posts.map((post: any) => {
-                            return <Post post={post} />;
+                            return <Post onDelete={onDelete} post={post} />;
                         })}
                     </div>
                 </div>
