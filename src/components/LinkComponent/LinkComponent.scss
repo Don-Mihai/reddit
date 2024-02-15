@@ -1,11 +1,46 @@
-.component-link {
-	&__text {
-		font-size: 14px;
-	}
+@import '../Nav/variables.scss';
 
-	&__image {
-		height: 20px;
-		width: 20px;
-		margin-right: 8px;
-	}
+.component-link {
+    & &__title {
+        font-size: 14px;
+        text-decoration: none;
+        color: $basic-lightest-grey;
+        border-radius: $border-raduis-item;
+        cursor: pointer;
+
+        & &:hover {
+            background-color: $basic-light-grey;
+        }
+    }
+
+    &__item {
+        text-decoration: none;
+        color: $basic-dark-grey;
+
+        &--border {
+            margin-left: 25px;
+            max-width: 195px;
+            border-left: 1px solid $basic-grey;
+        }
+    }
+
+    &__subitem {
+        margin-left: 25px;
+        max-width: 195px;
+        border-left: 1px solid $basic-grey;
+    }
+
+    &__item + svg {
+        margin-left: auto;
+    }
+
+    &__image {
+        height: 20px;
+        width: 20px;
+        margin-right: 8px;
+    }
+}
+
+.black {
+    background-color: black;
 }
