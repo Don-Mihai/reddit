@@ -10,8 +10,8 @@ import { IPost } from './utils';
 const initialState = { title: '', text: '', contentUrl: '' };
 
 const Home = () => {
-    const [formValues, setFormValues]: any = useState(initialState);
-    const [posts, setPosts]: any = useState([]);
+    const [formValues, setFormValues] = useState(initialState);
+    const [posts, setPosts] = useState<IPost[]>([]);
 
     useEffect(() => {
         getPosts();
@@ -60,7 +60,7 @@ const Home = () => {
                 <div className="content">
                     <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />
                     <div className="posts">
-                        {posts.map((post: any) => {
+                        {posts.map(post => {
                             return <Post onDelete={onDelete} post={post} />;
                         })}
                     </div>
