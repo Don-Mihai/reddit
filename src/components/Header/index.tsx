@@ -1,4 +1,4 @@
-import { Button, IconButton, Dialog, TextField, dividerClasses, Tooltip } from '@mui/material';
+import { Button, IconButton, Dialog, TextField, dividerClasses, Tooltip, Menu, MenuItem } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useState } from 'react';
 import './Header.scss';
@@ -7,6 +7,15 @@ import Auth from './Auth';
 const Header = () => {
     const [open, setOpen] = useState(false);
     const [isReg, setIsReg] = useState(true);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+    const openn = Boolean(anchorEl);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     const onOpen = () => {
         setOpen(true);
@@ -39,13 +48,28 @@ const Header = () => {
                 <Button className="actions__login-btn btn" onClick={onOpen} variant="contained">
                     Log in
                 </Button>
-                <IconButton className="actions__icon-btn btn">
+                <IconButton className="actions__icon-btn btn" onClick={handleClick}>
                     {' '}
                     <MoreHorizIcon />{' '}
                 </IconButton>
                 <Dialog className="modal" open={open} onClose={onClose}>
                     <div className="modal__wrap">{isReg ? <Auth changeMode={changeMode} /> : <Register changeMode={changeMode} />}</div>
                 </Dialog>
+            </div>
+            <div>
+                <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={openn}
+                    onClose={handleClose}
+                    MenuListProps={{
+                        'aria-labelledby': 'basic-button',
+                    }}
+                >
+                    <MenuItem onClick={handleClose}>Log In / Sign Up</MenuItem>
+                    <MenuItem onClick={handleClose}>Advertise on Reddit</MenuItem>
+                    <MenuItem onClick={handleClose}>Shop Collectible Avatars</MenuItem>
+                </Menu>
             </div>
         </header>
     );

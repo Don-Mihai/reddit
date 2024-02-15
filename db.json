@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "id": "2415",
+      "title": "Моисей",
+      "text": "Я рзадвигаю воды!",
+      "contentUrl": "https://www.pravoslavie.ru/sas/image/101942/194277.p.jpg?0.7133664009161294"
+    },
+    {
+      "id": "249d",
+      "title": "Геракл",
+      "text": "Аааарррррр я вас подниму!",
+      "contentUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Herakles_Hydra_Musei_Capitolini_MC236.jpg/220px-Herakles_Hydra_Musei_Capitolini_MC236.jpg"
+    },
+    {
+      "id": "5e71",
+      "title": "йй",
+      "text": "йй",
+      "contentUrl": "йй"
+    }
+  ]
+}
