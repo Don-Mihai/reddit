@@ -14,9 +14,8 @@ const initialState = { title: '', text: '', contentUrl: '' };
 
 const Home = () => {
     const [formValues, setFormValues] = useState(initialState);
-    const [posts, setPosts] = useState<IPost[]>([]);
 
-    const count = useSelector((state: RootState) => state.post.value);
+    const { value, posts } = useSelector((state: RootState) => state.post);
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {

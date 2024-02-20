@@ -22,6 +22,11 @@ export const counterSlice = createSlice({
             state.value += action.payload;
         },
     },
+    extraReducers(builder) {
+        builder.addCase(get.fulfilled, (state, action) => {
+            state.posts = action.payload;
+        });
+    },
 });
 
 // Action creators are generated for each case reducer function
@@ -29,7 +34,7 @@ export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
 export default counterSlice.reducer;
 
-export const get = createAsyncThunk('post/get', async (): Promise<IPost[] | undefined> => {
+export const get = createAsyncThunk('post/get', async (): Promise<IPost[]> => {
     const posts = (await axios.get('http://localhost:3001/posts')).data;
 
     return posts;
