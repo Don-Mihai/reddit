@@ -4,10 +4,13 @@ import { useState } from 'react';
 import './Header.scss';
 import Register from './Register';
 import Auth from './Auth';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 const Header = () => {
     const [open, setOpen] = useState(false);
     const [isReg, setIsReg] = useState(true);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const count = useSelector((state: RootState) => state.post.value);
 
     const openn = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -37,6 +40,7 @@ const Header = () => {
                     <img className="header__logo__img-wordmark" src={require('./img/wordmark.png')} />
                 </div>
             </Tooltip>
+            {count}
             <div className="header__input">
                 <input className="input" type="text" placeholder="Search Reddit" />
             </div>

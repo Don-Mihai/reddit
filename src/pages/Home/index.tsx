@@ -7,11 +7,17 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Popular from './Popular';
 import { IPost } from './utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { decrement, increment } from '../../redux/Post';
+import { RootState } from '../../redux/store';
 const initialState = { title: '', text: '', contentUrl: '' };
 
 const Home = () => {
     const [formValues, setFormValues] = useState(initialState);
     const [posts, setPosts] = useState<IPost[]>([]);
+
+    const count = useSelector((state: RootState) => state.post.value);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         getPosts();
@@ -59,6 +65,15 @@ const Home = () => {
                 <Nav />
                 <div className="content">
                     <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />
+                    <div>
+                        <button aria-label="Increment value" onClick={() => dispatch(increment())}>
+                            Increment
+                        </button>
+                        <span>{count}</span>
+                        <button aria-label="Decrement value" onClick={() => dispatch(decrement())}>
+                            Decrement
+                        </button>
+                    </div>
                     <div className="posts">
                         {posts.map(post => {
                             return <Post onDelete={onDelete} post={post} />;

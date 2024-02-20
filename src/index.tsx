@@ -5,6 +5,8 @@ import './styles/index.scss';
 import Home from './pages/Home';
 import Popular from './pages/Popular';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -19,4 +21,8 @@ const routes = createBrowserRouter([
     },
 ]);
 
-root.render(<RouterProvider router={routes} />);
+root.render(
+    <Provider store={store}>
+        <RouterProvider router={routes} />
+    </Provider>
+);
