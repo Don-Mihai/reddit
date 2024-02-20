@@ -1,6 +1,6 @@
 import { Menu, MenuItem, TextField, TextareaAutosize } from '@mui/material';
 import { IconButton } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -17,6 +17,18 @@ const Post = ({ post, onDelete }: Props) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [isEditMode, setIsEditMode] = useState(false);
     const [formValues, setFormValues] = useState(post);
+    const [posts, setPosts] = useState<IPost[]>([]);
+
+    useEffect(() => {
+        getPosts();
+    }, []);
+
+    const getPosts = async () => {
+        const posts = (await axios.get('http://localhost:3001/posts')).data;
+        setPosts(posts);
+    };
+
+
 
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -42,16 +54,18 @@ const Post = ({ post, onDelete }: Props) => {
         setIsEditMode(true);
     };
 
-    const saveChanges = async() => {
-        await axios.put(`http://localhost:3001/posts/${post.id}`, formValues);
-
+    const saveChanges = async () => {
+        await axios.put(`http://localhost:3001/posts/${post.id}`, formValues)
+        const updatedPost = (await axios.get(`http://localhost:3001/posts/${post.id}`)).data
+        setPosts(posts.map((post) => post.id === updatedPost.id? updatedPost : post))
+        // setPosts([...posts, updatedPost]);
         setIsEditMode(false);
     };
 
-	const cancelChanges = () => {
-		setFormValues(post)
-		setIsEditMode(false);
-	}
+    const cancelChanges = () => {
+        setFormValues(post);
+        setIsEditMode(false);
+    };
 
     return (
         <div className="post">

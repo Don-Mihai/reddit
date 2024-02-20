@@ -26,3 +26,5 @@ root.render(
         <RouterProvider router={routes} />
     </Provider>
 );
+
+document.getElementById('root');
