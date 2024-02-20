@@ -6,10 +6,10 @@ import CreatePost from '../../components/CreatePost';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Popular from './Popular';
-import { IPost } from './utils';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrement, increment } from '../../redux/Post';
-import { RootState } from '../../redux/store';
+import { decrement, get, increment } from '../../redux/Post';
+import { AppDispatch, RootState } from '../../redux/store';
+import { IPost } from '../../redux/Post/types';
 const initialState = { title: '', text: '', contentUrl: '' };
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
     const [posts, setPosts] = useState<IPost[]>([]);
 
     const count = useSelector((state: RootState) => state.post.value);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
         getPosts();
@@ -48,8 +48,7 @@ const Home = () => {
     };
 
     const getPosts = async () => {
-        const posts = (await axios.get('http://localhost:3001/posts')).data;
-        setPosts(posts);
+        dispatch(get());
     };
 
     const onDelete = async (postId: number | string) => {
