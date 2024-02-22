@@ -7,8 +7,9 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Popular from './Popular';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrement, deletePost, get, increment } from '../../redux/Post';
+import { add, decrement, deletePost, get, increment } from '../../redux/Post';
 import { AppDispatch, RootState } from '../../redux/store';
+import { PCreatePost } from '../../redux/Post/types';
 
 const initialState = { title: '', text: '', contentUrl: '' };
 
@@ -27,15 +28,13 @@ const Home = () => {
     };
 
     const addPost = async () => {
-        const payload = {
+        const payload: PCreatePost = {
             title: formValues.title,
             text: formValues.text,
             contentUrl: formValues.contentUrl,
         };
 
-        const resPost = (await axios.post('http://localhost:3001/posts', payload)).data;
-
-        // setPosts([...posts, resPost]);
+        dispatch(add(payload));
 
         clear();
     };

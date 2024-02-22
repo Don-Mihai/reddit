@@ -11,6 +11,12 @@ export interface IPost {
     countRepost: number;
     countComment: number;
 }
+export interface PCreatePost {
+    contentUrl: string;
+    title: string;
+    text: string;
+}
+
 export interface CounterState {
     value: number;
     posts: IPost[];

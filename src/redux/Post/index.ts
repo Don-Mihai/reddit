@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { CounterState, IPost } from './types';
+import { CounterState, IPost, PCreatePost } from './types';
 import axios from 'axios';
 
 const initialState: CounterState = {
@@ -27,10 +27,12 @@ export const counterSlice = createSlice({
         builder.addCase(get.fulfilled, (state, action) => {
             state.posts = action.payload;
         });
-
         builder.addCase(deletePost.fulfilled, (state, action) => {
             const deletedPostId = action.payload;
             state.posts = state.posts.filter(post => post.id !== deletedPostId);
+        });
+        builder.addCase(add.fulfilled, (state, action) => {
+            state.posts.push(action.payload);
         });
     },
 });
@@ -46,8 +48,14 @@ export const get = createAsyncThunk('post/get', async (): Promise<IPost[]> => {
     return posts;
 });
 
-export const deletePost = createAsyncThunk('post/delete', async (postId: number | string) => {
+export const deletePost = createAsyncThunk('post/delete', async (postId: number | string): Promise<string | number> => {
     await axios.delete(`http://localhost:3001/posts/${postId}`);
-    
+
     return postId;
+});
+
+export const add = createAsyncThunk('post/post', async (payload: PCreatePost): Promise<IPost> => {
+    const post = (await axios.post('http://localhost:3001/posts', payload)).data;
+
+    return post;
 });
