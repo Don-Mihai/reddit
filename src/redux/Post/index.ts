@@ -6,6 +6,7 @@ import axios from 'axios';
 const initialState: CounterState = {
     value: 0,
     posts: [],
+    id: [],
 };
 
 export const counterSlice = createSlice({
@@ -26,6 +27,11 @@ export const counterSlice = createSlice({
         builder.addCase(get.fulfilled, (state, action) => {
             state.posts = action.payload;
         });
+
+        builder.addCase(deletePost.fulfilled, (state, action) => {
+            const deletedPostId = action.payload;
+            state.posts = state.posts.filter(post => post.id !== deletedPostId);
+        });
     },
 });
 
@@ -38,4 +44,10 @@ export const get = createAsyncThunk('post/get', async (): Promise<IPost[]> => {
     const posts = (await axios.get('http://localhost:3001/posts')).data;
 
     return posts;
+});
+
+export const deletePost = createAsyncThunk('post/delete', async (postId: number | string) => {
+    await axios.delete(`http://localhost:3001/posts/${postId}`);
+    
+    return postId;
 });

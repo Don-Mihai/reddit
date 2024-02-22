@@ -7,9 +7,9 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Popular from './Popular';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrement, get, increment } from '../../redux/Post';
+import { decrement, deletePost, get, increment } from '../../redux/Post';
 import { AppDispatch, RootState } from '../../redux/store';
-import { IPost } from '../../redux/Post/types';
+
 const initialState = { title: '', text: '', contentUrl: '' };
 
 const Home = () => {
@@ -35,7 +35,7 @@ const Home = () => {
 
         const resPost = (await axios.post('http://localhost:3001/posts', payload)).data;
 
-        setPosts([...posts, resPost]);
+        // setPosts([...posts, resPost]);
 
         clear();
     };
@@ -50,10 +50,8 @@ const Home = () => {
         dispatch(get());
     };
 
-    const onDelete = async (postId: number | string) => {
-        await axios.delete(`http://localhost:3001/posts/${postId}`);
-
-        setPosts(posts.filter((post: IPost) => post.id !== postId));
+    const onDeletePost = async (postId: number | string) => {
+        dispatch(deletePost(postId));
     };
 
     return (
@@ -67,14 +65,14 @@ const Home = () => {
                         <button aria-label="Increment value" onClick={() => dispatch(increment())}>
                             Increment
                         </button>
-                        <span>{count}</span>
+                        <span>{0}</span>
                         <button aria-label="Decrement value" onClick={() => dispatch(decrement())}>
                             Decrement
                         </button>
                     </div>
                     <div className="posts">
                         {posts.map(post => {
-                            return <Post onDelete={onDelete} post={post} />;
+                            return <Post onDelete={onDeletePost} post={post} />;
                         })}
                     </div>
                 </div>

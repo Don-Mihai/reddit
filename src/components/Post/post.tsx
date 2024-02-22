@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
-import { IPost } from '../../pages/Home/utils';
 import './post.scss';
 import axios from 'axios';
+import { IPost } from '../../redux/Post/types';
 
 interface Props {
     post: IPost;
@@ -27,8 +27,6 @@ const Post = ({ post, onDelete }: Props) => {
         const posts = (await axios.get('http://localhost:3001/posts')).data;
         setPosts(posts);
     };
-
-
 
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
