@@ -1,44 +1,51 @@
 {
-    "posts": [
-        {
-            "id": "c20d",
-            "title": "qqq",
-            "text": "wqqwqwqew",
-            "contentUrl": ""
-        },
-        {
-            "id": "bc5b",
-            "title": "eeewttttt",
-            "text": "eerer",
-            "contentUrl": ""
-        },
-        {
-            "id": "af90",
-            "title": "2",
-            "text": "2",
-            "contentUrl": "1"
-        }
-    ],
-    "users": [
-        {
-            "id": "",
-            "email": "a@a.ru",
-            "username": "a",
-            "password": "dsadas"
-        },
-        {
-            "id": 0,
-            "email": "go.profy@yandex.ru",
-            "username": "3213",
-            "password": "dsadas",
-            "avatarUrl": ""
-        },
-        {
-            "id": 0,
-            "email": "xpertxpert@yandex.ru",
-            "username": "3213",
-            "password": "dsadas",
-            "avatarUrl": ""
-        }
-    ]
+  "posts": [
+    {
+      "id": "c20d",
+      "title": "qqq",
+      "text": "wqqwqwqew",
+      "contentUrl": ""
+    },
+    {
+      "id": "bc5b",
+      "title": "eeewttttt",
+      "text": "eerer",
+      "contentUrl": ""
+    },
+    {
+      "id": "af90",
+      "title": "2",
+      "text": "2",
+      "contentUrl": "1"
+    }
+  ],
+  "users": [
+    {
+      "id": "",
+      "email": "a@a.ru",
+      "username": "a",
+      "password": "dsadas"
+    },
+    {
+      "id": 0,
+      "email": "go.profy@yandex.ru",
+      "username": "3213",
+      "password": "dsadas",
+      "avatarUrl": ""
+    },
+    {
+      "id": 0,
+      "email": "xpertxpert@yandex.ru",
+      "username": "3213",
+      "password": "dsadas",
+      "avatarUrl": ""
+    },
+    {
+      "id": 0,
+      "email": "go.profy@yandex.ru",
+      "username": "3213",
+      "password": "dsadas",
+      "avatarUrl": ""
+    }
+  ]
 }

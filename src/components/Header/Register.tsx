@@ -2,10 +2,10 @@ import { VisibilityOff, Visibility } from '@mui/icons-material';
 import { TextField, Button, FormControl, OutlinedInput, IconButton, InputAdornment, InputLabel, FilledInput } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useEffect, useState } from 'react';
-import { IUser } from '../../pages/Home/utils';
 import { useDispatch } from 'react-redux';
-import { regUser } from '../../redux/Post';
+import { regUser } from '../../redux/Users';
 import { AppDispatch } from '../../redux/store';
+import { IUser } from '../../redux/Users/types';
 const EMAILREGEXP = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
 const initialState = { email: '', username: '', password: '' };

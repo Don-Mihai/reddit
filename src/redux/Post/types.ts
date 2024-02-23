@@ -1,4 +1,4 @@
-import { IUser } from '../../pages/Home/utils';
+import { IUser } from '../Users/types';
 
 export interface IPost {
     id: number | string;
@@ -21,5 +21,4 @@ export interface CounterState {
     value: number;
     posts: IPost[];
     id: IPost[];
-    users: IUser[];
 }

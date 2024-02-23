@@ -2,13 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { CounterState, IPost, PCreatePost } from './types';
 import axios from 'axios';
-import { IUser } from '../../pages/Home/utils';
 
 const initialState: CounterState = {
     value: 0,
     posts: [],
     id: [],
-    users: [],
 };
 
 export const counterSlice = createSlice({
@@ -39,9 +37,6 @@ export const counterSlice = createSlice({
         builder.addCase(saveChangesAsync.fulfilled, (state, action) => {
             const { updatedPost } = action.payload;
             state.posts = state.posts.map(post => (post.id === updatedPost.id ? updatedPost : post));
-        });
-        builder.addCase(regUser.fulfilled, (state, action) => {
-            state.users.push(action.payload);
         });
     },
 });
@@ -75,10 +70,4 @@ export const saveChangesAsync = createAsyncThunk('post/saveChanges', async (data
     const updatedPost = (await axios.get(`http://localhost:3001/posts/${formValues.id}`)).data;
 
     return { updatedPost };
-});
-
-export const regUser = createAsyncThunk('post/regUser', async (payload: IUser): Promise<IUser> => {
-    const user = (await axios.post('http://localhost:3001/users', payload)).data;
-
-    return user;
 });
