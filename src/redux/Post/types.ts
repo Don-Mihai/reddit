@@ -21,4 +21,5 @@ export interface CounterState {
     value: number;
     posts: IPost[];
     id: IPost[];
+    users: IUser[];
 }

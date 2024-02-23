@@ -11,6 +11,7 @@ const Header = () => {
     const [isReg, setIsReg] = useState(true);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const count = useSelector((state: RootState) => state.post.value);
+    const [isLogin, setIsLogin] = useState(false);
 
     const openn = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -32,6 +33,11 @@ const Header = () => {
         console.log(isReg);
     };
 
+    const onIsLogin = () => {
+        setIsLogin(true);
+        setOpen(false);
+    };
+
     return (
         <header className="header">
             <Tooltip title="Go to Reddit Home" arrow className="header__tooltip">
@@ -40,7 +46,7 @@ const Header = () => {
                     <img className="header__logo__img-wordmark" src={require('./img/wordmark.png')} />
                 </div>
             </Tooltip>
-            {count}
+            {!isLogin ? '' : <>Ваш аккаунт!</>}
             <div className="header__input">
                 <input className="input" type="text" placeholder="Search Reddit" />
             </div>
@@ -57,7 +63,9 @@ const Header = () => {
                     <MoreHorizIcon />{' '}
                 </IconButton>
                 <Dialog className="modal" open={open} onClose={onClose}>
-                    <div className="modal__wrap">{isReg ? <Auth changeMode={changeMode} /> : <Register changeMode={changeMode} />}</div>
+                    <div className="modal__wrap">
+                        {isReg ? <Auth changeMode={changeMode} /> : <Register changeMode={changeMode} onClose={setOpen} onIsLogin={onIsLogin} />}
+                    </div>
                 </Dialog>
             </div>
             <div>
