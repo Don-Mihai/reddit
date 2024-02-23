@@ -6,7 +6,10 @@ import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import './post.scss';
 import axios from 'axios';
-import { IPost } from '../../redux/Post/types';
+import { IPost, PCreatePost } from '../../redux/Post/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store';
+import { saveChangesAsync } from '../../redux/Post';
 
 interface Props {
     post: IPost;
@@ -18,6 +21,8 @@ const Post = ({ post, onDelete }: Props) => {
     const [isEditMode, setIsEditMode] = useState(false);
     const [formValues, setFormValues] = useState(post);
     const [posts, setPosts] = useState<IPost[]>([]);
+
+    const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
         getPosts();
@@ -53,10 +58,7 @@ const Post = ({ post, onDelete }: Props) => {
     };
 
     const saveChanges = async () => {
-        await axios.put(`http://localhost:3001/posts/${post.id}`, formValues)
-        const updatedPost = (await axios.get(`http://localhost:3001/posts/${post.id}`)).data
-        setPosts(posts.map((post) => post.id === updatedPost.id? updatedPost : post))
-        // setPosts([...posts, updatedPost]);
+        dispatch(saveChangesAsync({ formValues, post }));
         setIsEditMode(false);
     };
 

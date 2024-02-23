@@ -34,6 +34,10 @@ export const counterSlice = createSlice({
         builder.addCase(add.fulfilled, (state, action) => {
             state.posts.push(action.payload);
         });
+        builder.addCase(saveChangesAsync.fulfilled, (state, action) => {
+            const { updatedPost } = action.payload;
+            state.posts = state.posts.map(post => (post.id === updatedPost.id ? updatedPost : post));
+        });
     },
 });
 
@@ -58,4 +62,12 @@ export const add = createAsyncThunk('post/post', async (payload: PCreatePost): P
     const post = (await axios.post('http://localhost:3001/posts', payload)).data;
 
     return post;
+});
+
+export const saveChangesAsync = createAsyncThunk('post/saveChanges', async (data: { formValues: any; post: IPost }) => {
+    const { formValues, post } = data;
+    await axios.put(`http://localhost:3001/posts/${post.id}`, formValues);
+    const updatedPost = (await axios.get(`http://localhost:3001/posts/${formValues.id}`)).data;
+
+    return { updatedPost };
 });

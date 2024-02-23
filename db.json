@@ -1,16 +1,29 @@
 {
-  "posts": [
-    {
-      "id": "c20d",
-      "title": "qqq",
-      "text": "wqqwqwqew",
-      "contentUrl": ""
-    },
-    {
-      "id": "bc5b",
-      "title": "eeewttttt",
-      "text": "eerer",
-      "contentUrl": ""
-    }
-  ]
+    "posts": [
+        {
+            "id": "c20d",
+            "title": "qqq",
+            "text": "wqqwqwqew",
+            "contentUrl": ""
+        },
+        {
+            "id": "bc5b",
+            "title": "eeewttttt",
+            "text": "eerer",
+            "contentUrl": ""
+        },
+        {
+            "id": "af90",
+            "title": "1",
+            "text": "1",
+            "contentUrl": "1"
+        }
+    ],
+    "users": [
+        {
+            "id": "",
+            "name": "John Doe",
+            "email": "john.doe@example.com"
+        }
+    ]
 }
