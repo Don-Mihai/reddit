@@ -1,6 +1,26 @@
-import { TextField, Button } from "@mui/material";
+import { TextField, Button } from '@mui/material';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../redux/store';
 
-const Auth = ({ changeMode }: any) => {
+const Auth = (props: any) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [formFilled, setFormFilled] = useState(false);
+    const dispatch = useDispatch<AppDispatch>();
+    const isLogin = props.onIsLogin;
+    const changeMode = props.changeMode;
+
+    const handleUsernameChange = (event: any) => {
+        setUsername(event.target.value);
+        setFormFilled(event.target.value !== '' && password !== '');
+    };
+
+    const handlePasswordChange = (event: any) => {
+        setPassword(event.target.value);
+        setFormFilled(username !== '' && event.target.value !== '');
+    };
+
     return (
         <>
             <h2 className="modal__title">Log In</h2>
@@ -21,8 +41,8 @@ const Auth = ({ changeMode }: any) => {
             </div>
 
             <div className="modal__inputs">
-                <TextField label="Username *" variant="filled" fullWidth />
-                <TextField label="Password *" variant="filled" fullWidth />
+                <TextField label="Username *" value={username} name="username" onChange={handleUsernameChange} variant="filled" fullWidth />
+                <TextField label="Password *" value={password} name="password" onChange={handlePasswordChange} variant="filled" fullWidth />
             </div>
             <div className="modal__link-recovery">
                 Forgot your <span className="modal__link">username</span> or <span className="modal__link">password</span> ?
@@ -33,11 +53,28 @@ const Auth = ({ changeMode }: any) => {
                     Sign Up
                 </span>
             </div>
-            <Button className="modal__button" variant="contained" fullWidth>
-                Log In
-            </Button>
+            {!formFilled ? (
+                <>
+                    <Button className="modal__button_disabled" variant="contained" fullWidth>
+                        Log In
+                    </Button>
+                </>
+            ) : (
+                <>
+                    <Button className="modal__button" variant="contained" fullWidth>
+                        Log In
+                    </Button>
+                </>
+            )}
         </>
     );
 };
- 
+
 export default Auth;
+function dispatch(arg0: any) {
+    throw new Error('Function not implemented.');
+}
+
+function isLogin(arg0: boolean) {
+    throw new Error('Function not implemented.');
+}

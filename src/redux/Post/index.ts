@@ -64,9 +64,9 @@ export const add = createAsyncThunk('post/post', async (payload: PCreatePost): P
     return post;
 });
 
-export const saveChangesAsync = createAsyncThunk('post/saveChanges', async (data: { formValues: any; post: IPost }) => {
-    const { formValues, post } = data;
-    await axios.put(`http://localhost:3001/posts/${post.id}`, formValues);
+export const saveChangesAsync = createAsyncThunk('post/saveChanges', async (data: { formValues: any; postId: string | number }) => {
+    const { formValues, postId } = data;
+    await axios.put(`http://localhost:3001/posts/${postId}`, formValues);
     const updatedPost = (await axios.get(`http://localhost:3001/posts/${formValues.id}`)).data;
 
     return { updatedPost };

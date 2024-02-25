@@ -14,37 +14,29 @@
     },
     {
       "id": "af90",
-      "title": "2",
-      "text": "2",
+      "title": "1",
+      "text": "1",
       "contentUrl": "1"
     }
   ],
   "users": [
     {
-      "id": "",
+      "id": "1",
       "email": "a@a.ru",
       "username": "a",
-      "password": "dsadas"
+      "password": "a"
     },
     {
-      "id": 0,
-      "email": "go.profy@yandex.ru",
-      "username": "3213",
-      "password": "dsadas",
-      "avatarUrl": ""
+      "id": "2",
+      "email": "a@a.ru",
+      "username": "b",
+      "password": "b"
     },
     {
-      "id": 0,
-      "email": "xpertxpert@yandex.ru",
-      "username": "3213",
-      "password": "dsadas",
-      "avatarUrl": ""
-    },
-    {
-      "id": 0,
-      "email": "go.profy@yandex.ru",
-      "username": "3213",
-      "password": "dsadas",
+      "id": 99,
+      "email": "c@c.ru",
+      "username": "c",
+      "password": "c",
       "avatarUrl": ""
     }
   ]

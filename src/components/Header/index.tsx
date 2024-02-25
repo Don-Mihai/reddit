@@ -7,11 +7,11 @@ import Auth from './Auth';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 const Header = () => {
-    const [open, setOpen] = useState(false);
-    const [isReg, setIsReg] = useState(true);
+    const [open, setOpen] = useState<boolean>(false);
+    const [isReg, setIsReg] = useState<boolean>(true);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const count = useSelector((state: RootState) => state.post.value);
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState<boolean>(false);
 
     const openn = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -46,7 +46,7 @@ const Header = () => {
                     <img className="header__logo__img-wordmark" src={require('./img/wordmark.png')} />
                 </div>
             </Tooltip>
-            {!isLogin ? '' : <>Ваш аккаунт!</>}
+            {!isLogin ? '' : <>Вы успешно зарегистрированы!</>}
             <div className="header__input">
                 <input className="input" type="text" placeholder="Search Reddit" />
             </div>
@@ -64,7 +64,11 @@ const Header = () => {
                 </IconButton>
                 <Dialog className="modal" open={open} onClose={onClose}>
                     <div className="modal__wrap">
-                        {isReg ? <Auth changeMode={changeMode} /> : <Register changeMode={changeMode} onClose={setOpen} onIsLogin={onIsLogin} />}
+                        {isReg ? (
+                            <Auth changeMode={changeMode} onClose={setOpen} onIsLogin={onIsLogin} />
+                        ) : (
+                            <Register changeMode={changeMode} onClose={setOpen} onIsLogin={onIsLogin} />
+                        )}
                     </div>
                 </Dialog>
             </div>

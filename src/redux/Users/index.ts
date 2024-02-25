@@ -8,7 +8,7 @@ const initialState: CounterState = {
 };
 
 export const counterSlice = createSlice({
-    name: 'Post',
+    name: 'Users',
     initialState,
     reducers: {},
     extraReducers(builder) {
@@ -22,7 +22,7 @@ export const counterSlice = createSlice({
 
 export default counterSlice.reducer;
 
-export const regUser = createAsyncThunk('post/regUser', async (payload: IUser): Promise<IUser> => {
+export const regUser = createAsyncThunk('users/regUser', async (payload: IUser): Promise<IUser> => {
     const user = (await axios.post('http://localhost:3001/users', payload)).data;
 
     return user;

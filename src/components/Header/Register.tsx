@@ -11,9 +11,10 @@ const EMAILREGEXP = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~
 const initialState = { email: '', username: '', password: '' };
 
 const Register = (props: any) => {
-    const [disabled, setDisabled] = useState(true);
-    const [regMail, setRegMail] = useState(true);
+    const [disabled, setDisabled] = useState<boolean>(true);
+    const [regMail, setRegMail] = useState<boolean>(true);
     const [formValues, setFormValues] = useState(initialState);
+    const [formFilled, setFormFilled] = useState<boolean>(false);
     function isEmailValid(value: string) {
         return EMAILREGEXP.test(value);
     }
@@ -37,6 +38,7 @@ const Register = (props: any) => {
         const key = event.target.name;
         const value = event.target.value;
         setFormValues({ ...formValues, [key]: value });
+        setFormFilled(value !== '');
     };
 
     const registerEmail = () => {
@@ -47,11 +49,12 @@ const Register = (props: any) => {
     const isLogin = props.onIsLogin;
 
     const onRegUser = async () => {
+        const randomId = Math.floor(Math.random() * 1000);
         const payload: IUser = {
+            id: randomId,
             email: formValues.email,
             username: formValues.username,
             password: formValues.password,
-            id: 0,
             avatarUrl: '',
         };
 
@@ -159,9 +162,19 @@ const Register = (props: any) => {
                         </FormControl>
                     </div>
 
-                    <Button className="modal__button_disabled" onClick={onRegUser} variant="contained" fullWidth>
-                        Continue
-                    </Button>
+                    {formFilled ? (
+                        <>
+                            <Button className="modal__button" onClick={onRegUser} variant="contained" fullWidth>
+                                Continue
+                            </Button>
+                        </>
+                    ) : (
+                        <>
+                            <Button className="modal__button_disabled" variant="contained" fullWidth>
+                                Continue
+                            </Button>
+                        </>
+                    )}
                 </>
             )}
         </>

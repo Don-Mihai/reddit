@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Popular from './Popular';
 import { useDispatch, useSelector } from 'react-redux';
-import { add, decrement, deletePost, get, increment } from '../../redux/Post';
+import { add, decrement, deletePost, get, increment, saveChangesAsync } from '../../redux/Post';
 import { AppDispatch, RootState } from '../../redux/store';
 import { PCreatePost } from '../../redux/Post/types';
 
@@ -53,6 +53,10 @@ const Home = () => {
         dispatch(deletePost(postId));
     };
 
+    const onSaveChangesPost = async (formValues: any, postId: number | string) => {
+        dispatch(saveChangesAsync({ formValues, postId }));
+    };
+
     return (
         <div>
             <Header />
@@ -71,7 +75,7 @@ const Home = () => {
                     </div>
                     <div className="posts">
                         {posts.map(post => {
-                            return <Post onDelete={onDeletePost} post={post} />;
+                            return <Post onDelete={onDeletePost} post={post} onSaveChanges={onSaveChangesPost} />;
                         })}
                     </div>
                 </div>

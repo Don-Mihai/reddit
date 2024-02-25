@@ -9,20 +9,18 @@ import axios from 'axios';
 import { IPost, PCreatePost } from '../../redux/Post/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
-import { saveChangesAsync } from '../../redux/Post';
 
 interface Props {
     post: IPost;
     onDelete: (postId: number | string) => void;
+    onSaveChanges: (formValues: any, postId: number | string) => void;
 }
 
-const Post = ({ post, onDelete }: Props) => {
+const Post = ({ post, onDelete, onSaveChanges }: Props) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [isEditMode, setIsEditMode] = useState(false);
     const [formValues, setFormValues] = useState(post);
     const [posts, setPosts] = useState<IPost[]>([]);
-
-    const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
         getPosts();
@@ -58,7 +56,7 @@ const Post = ({ post, onDelete }: Props) => {
     };
 
     const saveChanges = async () => {
-        dispatch(saveChangesAsync({ formValues, post }));
+        onSaveChanges(formValues, post.id);
         setIsEditMode(false);
     };
 

@@ -5,7 +5,6 @@ export interface IUser {
     password: string;
     avatarUrl: string;
 }
-
 export interface CounterState {
     users: IUser[];
 }

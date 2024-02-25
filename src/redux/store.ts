@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import post from './Post';
+import users from './Users';
 
 export const store = configureStore({
     reducer: {
         post,
+        users,
     },
 });
 
