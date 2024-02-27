@@ -9,6 +9,7 @@ import axios from 'axios';
 import { IPost, PCreatePost } from '../../redux/Post/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
+import PostSkeleton from './PostSkeleton';
 
 interface Props {
     post: IPost;

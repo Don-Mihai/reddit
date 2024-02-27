@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { CounterState, IPost, PCreatePost } from './types';
+import { PostState, IPost, PCreatePost } from './types';
 import axios from 'axios';
 
-const initialState: CounterState = {
-    value: 0,
+const initialState: PostState = {
+    isLoading: false,
     posts: [],
     id: [],
 };
@@ -12,20 +12,14 @@ const initialState: CounterState = {
 export const counterSlice = createSlice({
     name: 'Post',
     initialState,
-    reducers: {
-        increment: state => {
-            state.value += 1;
-        },
-        decrement: state => {
-            state.value -= 1;
-        },
-        incrementByAmount: (state, action: PayloadAction<number>) => {
-            state.value += action.payload;
-        },
-    },
+    reducers: {},
     extraReducers(builder) {
+        builder.addCase(get.pending, (state, action) => {
+            state.isLoading = true;
+        });
         builder.addCase(get.fulfilled, (state, action) => {
             state.posts = action.payload;
+            state.isLoading = false;
         });
         builder.addCase(deletePost.fulfilled, (state, action) => {
             const deletedPostId = action.payload;
@@ -42,7 +36,7 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const {} = counterSlice.actions;
 
 export default counterSlice.reducer;
 
