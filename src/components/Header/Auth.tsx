@@ -53,19 +53,9 @@ const Auth = (props: any) => {
                     Sign Up
                 </span>
             </div>
-            {!formFilled ? (
-                <>
-                    <Button className="modal__button_disabled" variant="contained" fullWidth>
-                        Log In
-                    </Button>
-                </>
-            ) : (
-                <>
-                    <Button className="modal__button" variant="contained" fullWidth>
-                        Log In
-                    </Button>
-                </>
-            )}
+            <Button className={!formFilled ? 'modal__button_disabled' : 'modal__button'} variant="contained" fullWidth>
+                Log In
+            </Button>
         </>
     );
 };
