@@ -25,6 +25,12 @@
       "email": "admin@admin.ru",
       "username": "admin",
       "password": "admin"
+    },
+    {
+      "id": "4d75",
+      "email": "moisey@mail.ru",
+      "username": "moisey",
+      "password": "moisey"
     }
   ]
 }

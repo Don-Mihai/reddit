@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { add, decrement, deletePost, get, increment, saveChangesAsync } from '../../redux/Post';
 import { AppDispatch, RootState } from '../../redux/store';
 import { PCreatePost } from '../../redux/Post/types';
+import { getById } from '../../redux/Users';
 
 const initialState = { title: '', text: '', contentUrl: '' };
 
@@ -21,6 +22,9 @@ const Home = () => {
 
     useEffect(() => {
         getPosts();
+
+        const id = localStorage.getItem('userId');
+        dispatch(getById(id));
     }, []);
 
     const clear = () => {

@@ -12,9 +12,13 @@ export const counterSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers(builder) {
-        builder.addCase(regUser.fulfilled, (state, action) => {
-            state.currentUser = action.payload;
-        });
+        builder
+            .addCase(regUser.fulfilled, (state, action) => {
+                state.currentUser = action.payload;
+            })
+            .addCase(getById.fulfilled, (state, action) => {
+                state.currentUser = action.payload;
+            });
     },
 });
 
@@ -24,6 +28,13 @@ export default counterSlice.reducer;
 
 export const regUser = createAsyncThunk('users/regUser', async (payload: PCreateUser): Promise<IUser> => {
     const user = (await axios.post('http://localhost:3001/users', payload)).data;
+
+    localStorage.setItem('userId', user.id);
+    return user;
+});
+
+export const getById = createAsyncThunk('users/getByIdUser', async (userId: number | string | null): Promise<IUser> => {
+    const user = (await axios.get(`http://localhost:3001/users/${userId}`)).data;
 
     return user;
 });
