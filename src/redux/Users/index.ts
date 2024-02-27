@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { UserState, IUser, PCreateUser } from './types';
+import { UserState, IUser, PCreateUser, PAuthUser } from './types';
 import axios from 'axios';
 
 const initialState: UserState = {
@@ -17,6 +17,9 @@ export const counterSlice = createSlice({
                 state.currentUser = action.payload;
             })
             .addCase(getById.fulfilled, (state, action) => {
+                state.currentUser = action.payload;
+            })
+            .addCase(authUser.fulfilled, (state, action) => {
                 state.currentUser = action.payload;
             });
     },
@@ -35,6 +38,15 @@ export const regUser = createAsyncThunk('users/regUser', async (payload: PCreate
 
 export const getById = createAsyncThunk('users/getByIdUser', async (userId: number | string | null): Promise<IUser> => {
     const user = (await axios.get(`http://localhost:3001/users/${userId}`)).data;
+
+    return user;
+});
+
+export const authUser = createAsyncThunk('users/regUser', async (payload: PAuthUser): Promise<IUser> => {
+    const user = (await axios.get(`http://localhost:3001/users?username=${payload.username}&password=${payload.password}`)).data[0];
+    if (user.id) {
+        localStorage.setItem('userId', user.id);
+    }
 
     return user;
 });

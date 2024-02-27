@@ -11,6 +11,12 @@ export interface PCreateUser {
     username: string;
     password: string;
 }
+
+export interface PAuthUser {
+    username: string;
+    password: string;
+}
+
 export interface UserState {
     currentUser: IUser;
 }
