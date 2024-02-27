@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { regUser } from '../../redux/Users';
 import { AppDispatch } from '../../redux/store';
-import { IUser } from '../../redux/Users/types';
+import { IUser, PCreateUser } from '../../redux/Users/types';
 const EMAILREGEXP = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
 const initialState = { email: '', username: '', password: '' };
@@ -49,13 +49,10 @@ const Register = (props: any) => {
     const isLogin = props.onIsLogin;
 
     const onRegUser = async () => {
-        const randomId = Math.floor(Math.random() * 1000);
-        const payload: IUser = {
-            id: randomId,
+        const payload: PCreateUser = {
             email: formValues.email,
             username: formValues.username,
             password: formValues.password,
-            avatarUrl: '',
         };
 
         dispatch(regUser(payload));

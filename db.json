@@ -21,23 +21,10 @@
   ],
   "users": [
     {
-      "id": "1",
-      "email": "a@a.ru",
-      "username": "a",
-      "password": "a"
-    },
-    {
-      "id": "2",
-      "email": "a@a.ru",
-      "username": "b",
-      "password": "b"
-    },
-    {
-      "id": 99,
-      "email": "c@c.ru",
-      "username": "c",
-      "password": "c",
-      "avatarUrl": ""
+      "id": "fb75",
+      "email": "admin@admin.ru",
+      "username": "admin",
+      "password": "admin"
     }
   ]
 }
