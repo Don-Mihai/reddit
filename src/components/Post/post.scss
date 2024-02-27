@@ -1,12 +1,12 @@
 .post {
     width: 650px;
-    height: 700px;
+    max-height: 700px;
     border: 1px gray;
     border-radius: 5px;
 
     .image {
         img {
-            width: 100%;
+            // width: 100%;
         }
     }
 }
