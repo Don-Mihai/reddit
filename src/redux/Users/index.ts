@@ -42,7 +42,7 @@ export const getById = createAsyncThunk('users/getByIdUser', async (userId: numb
     return user;
 });
 
-export const authUser = createAsyncThunk('users/regUser', async (payload: PAuthUser): Promise<IUser> => {
+export const authUser = createAsyncThunk('users/authUser', async (payload: PAuthUser): Promise<IUser> => {
     const user = (await axios.get(`http://localhost:3001/users?username=${payload.username}&password=${payload.password}`)).data[0];
     if (user.id) {
         localStorage.setItem('userId', user.id);
