@@ -1,5 +1,3 @@
-export interface IUser {
-    id: number;
-    name: string;
-    avatarUrl: string;
+export interface IUtil {
+    id: string;
 }
