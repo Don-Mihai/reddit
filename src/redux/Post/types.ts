@@ -17,8 +17,8 @@ export interface PCreatePost {
     text: string;
 }
 
-export interface CounterState {
-    value: number;
+export interface PostState {
+    isLoading: boolean;
     posts: IPost[];
     id: IPost[];
 }

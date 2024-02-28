@@ -5,6 +5,18 @@ export interface IUser {
     password: string;
     avatarUrl: string;
 }
-export interface CounterState {
-    users: IUser[];
+
+export interface PCreateUser {
+    email: string;
+    username: string;
+    password: string;
+}
+
+export interface PAuthUser {
+    username: string;
+    password: string;
+}
+
+export interface UserState {
+    currentUser: IUser;
 }

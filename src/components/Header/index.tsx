@@ -10,7 +10,6 @@ const Header = () => {
     const [open, setOpen] = useState<boolean>(false);
     const [isReg, setIsReg] = useState<boolean>(true);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const count = useSelector((state: RootState) => state.post.value);
     const [isLogin, setIsLogin] = useState<boolean>(false);
 
     const openn = Boolean(anchorEl);
