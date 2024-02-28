@@ -19,4 +19,5 @@ export interface PAuthUser {
 
 export interface UserState {
     currentUser: IUser;
+    isUserAuth: boolean;
 }

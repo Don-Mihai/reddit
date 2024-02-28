@@ -7,21 +7,29 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Popular from './Popular';
 import { useDispatch, useSelector } from 'react-redux';
-import { add, decrement, deletePost, get, increment, saveChangesAsync } from '../../redux/Post';
+import { add, deletePost, get, saveChangesAsync } from '../../redux/Post';
 import { AppDispatch, RootState } from '../../redux/store';
 import { PCreatePost } from '../../redux/Post/types';
+import { getById, setUserAuth } from '../../redux/Users';
+import PostSkeleton from '../../components/Post/PostSkeleton';
 
 const initialState = { title: '', text: '', contentUrl: '' };
 
 const Home = () => {
     const [formValues, setFormValues] = useState(initialState);
 
-    const { value, posts } = useSelector((state: RootState) => state.post);
+    const { posts, isLoading } = useSelector((state: RootState) => state.post);
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
         getPosts();
-    }, []);
+
+        const id = localStorage.getItem('userId');
+        if (id) {
+            dispatch(setUserAuth(true));
+        }
+        dispatch(getById(id));
+    }, [dispatch]);
 
     const clear = () => {
         setFormValues(initialState);
@@ -64,19 +72,15 @@ const Home = () => {
                 <Nav />
                 <div className="content">
                     <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />
-                    <div>
-                        <button aria-label="Increment value" onClick={() => dispatch(increment())}>
-                            Increment
-                        </button>
-                        <span>{0}</span>
-                        <button aria-label="Decrement value" onClick={() => dispatch(decrement())}>
-                            Decrement
-                        </button>
-                    </div>
+
                     <div className="posts">
-                        {posts.map(post => {
-                            return <Post onDelete={onDeletePost} post={post} onSaveChanges={onSaveChangesPost} />;
-                        })}
+                        {isLoading ? (
+                            <PostSkeleton />
+                        ) : (
+                            posts.map(post => {
+                                return <Post onDelete={onDeletePost} post={post} onSaveChanges={onSaveChangesPost} />;
+                            })
+                        )}
                     </div>
                 </div>
                 <Popular />
