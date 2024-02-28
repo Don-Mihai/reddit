@@ -2,6 +2,9 @@ import { TextField, Button } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store';
+import axios from 'axios';
+import { authUser } from '../../redux/Users';
+import { PAuthUser } from '../../redux/Users/types';
 
 const Auth = (props: any) => {
     const [username, setUsername] = useState('');
@@ -19,6 +22,14 @@ const Auth = (props: any) => {
     const handlePasswordChange = (event: any) => {
         setPassword(event.target.value);
         setFormFilled(username !== '' && event.target.value !== '');
+    };
+
+    const auth = async () => {
+        const payload: PAuthUser = {
+            username,
+            password,
+        };
+        dispatch(authUser(payload));
     };
 
     return (
@@ -53,19 +64,9 @@ const Auth = (props: any) => {
                     Sign Up
                 </span>
             </div>
-            {!formFilled ? (
-                <>
-                    <Button className="modal__button_disabled" variant="contained" fullWidth>
-                        Log In
-                    </Button>
-                </>
-            ) : (
-                <>
-                    <Button className="modal__button" variant="contained" fullWidth>
-                        Log In
-                    </Button>
-                </>
-            )}
+            <Button onClick={auth} className={!formFilled ? 'modal__button_disabled' : 'modal__button'} variant="contained" fullWidth>
+                Log In
+            </Button>
         </>
     );
 };
