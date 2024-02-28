@@ -25,6 +25,9 @@ export const counterSlice = createSlice({
             })
             .addCase(setUserAuth, (state, action) => {
                 state.isUserAuth = action.payload;
+            })
+            .addCase(logOutUser, state => {
+                state.isUserAuth = false;
             });
     },
 });
@@ -34,6 +37,7 @@ export const counterSlice = createSlice({
 export default counterSlice.reducer;
 
 export const setUserAuth = createAction<boolean>('users/setUserAuth');
+export const logOutUser = createAction('users/logoutUser');
 
 export const regUser = createAsyncThunk('users/regUser', async (payload: PCreateUser): Promise<IUser> => {
     const user = (await axios.post('http://localhost:3001/users', payload)).data;

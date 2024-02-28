@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store';
 import axios from 'axios';
-import { authUser } from '../../redux/Users';
+import { authUser, setUserAuth } from '../../redux/Users';
 import { PAuthUser } from '../../redux/Users/types';
 
 const Auth = (props: any) => {
@@ -11,8 +11,8 @@ const Auth = (props: any) => {
     const [password, setPassword] = useState('');
     const [formFilled, setFormFilled] = useState(false);
     const dispatch = useDispatch<AppDispatch>();
-    const isLogin = props.onIsLogin;
     const changeMode = props.changeMode;
+    const closeAuth = props.onClose;
 
     const handleUsernameChange = (event: any) => {
         setUsername(event.target.value);
@@ -29,7 +29,14 @@ const Auth = (props: any) => {
             username,
             password,
         };
-        dispatch(authUser(payload));
+        const resultAction = await dispatch(authUser(payload));
+
+        if (authUser.fulfilled.match(resultAction)) {
+            dispatch(setUserAuth(true));
+            closeAuth();
+        } else {
+            // Вывести сообщение об ошибке авторизации
+        }
     };
 
     return (
@@ -72,10 +79,3 @@ const Auth = (props: any) => {
 };
 
 export default Auth;
-function dispatch(arg0: any) {
-    throw new Error('Function not implemented.');
-}
-
-function isLogin(arg0: boolean) {
-    throw new Error('Function not implemented.');
-}
