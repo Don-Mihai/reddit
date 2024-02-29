@@ -9,6 +9,7 @@ import axios from 'axios';
 import { IPost, PCreatePost } from '../../redux/Post/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
+import PostSkeleton from './PostSkeleton';
 
 interface Props {
     post: IPost;
@@ -109,10 +110,11 @@ const Post = ({ post, onDelete, onSaveChanges }: Props) => {
             </div>
             <div className="content">
                 {!isEditMode ? <span className="cats_text">{post?.text}</span> : <TextareaAutosize name="text" onChange={onChange} value={formValues?.text} />}
-
-                <div className="image">
-                    <img src={post?.contentUrl} alt="cats" />
-                </div>
+                {Boolean(post?.contentUrl) && (
+                    <div className="image">
+                        <img src={post?.contentUrl} alt="cats" />
+                    </div>
+                )}
             </div>
             <div className="footer">
                 <button className="like">

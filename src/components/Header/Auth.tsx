@@ -2,7 +2,6 @@ import { TextField, Button } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store';
-import axios from 'axios';
 import { authUser, setUserAuth } from '../../redux/Users';
 import { PAuthUser } from '../../redux/Users/types';
 
@@ -29,14 +28,8 @@ const Auth = (props: any) => {
             username,
             password,
         };
-        const resultAction = await dispatch(authUser(payload));
 
-        if (authUser.fulfilled.match(resultAction)) {
-            dispatch(setUserAuth(true));
-            closeAuth();
-        } else {
-            // Вывести сообщение об ошибке авторизации
-        }
+        dispatch(authUser(payload));
     };
 
     return (
