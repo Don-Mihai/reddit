@@ -1,6 +1,6 @@
 import { Button, IconButton, Dialog, TextField, dividerClasses, Tooltip, Menu, MenuItem } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { useState, memo } from 'react';
+import { useState, memo, useMemo, useCallback } from 'react';
 import './Header.scss';
 import Register from './Register';
 import Auth from './Auth';
@@ -27,9 +27,9 @@ const Header = memo(() => {
     const onOpen = () => {
         setOpen(true);
     };
-    const onClose = () => {
+    const onClose = useCallback(() => {
         setOpen(false);
-    };
+    }, [])
 
     const changeMode = () => {
         setIsReg(!isReg);
@@ -47,14 +47,20 @@ const Header = memo(() => {
         handleClose();
     };
 
-    return (
-        <header className="header">
+    const logo = useMemo(() => {
+        return (
             <Tooltip title="Go to Reddit Home" arrow className="header__tooltip">
                 <div className="header__logo">
                     <img className="header__logo__img" src={require('./img/logo.png')} />
                     <img className="header__logo__img-wordmark" src={require('./img/wordmark.png')} />
                 </div>
             </Tooltip>
+        );
+    }, []);
+
+    return (
+        <header className="header">
+            {logo}
             {!isLogin ? '' : <>Вы успешно зарегистрированы!</>}
             <div className="header__input">
                 <input className="input" type="text" placeholder="Search Reddit" />
