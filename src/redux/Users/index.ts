@@ -1,10 +1,11 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { UserState, IUser, PCreateUser, PAuthUser } from './types';
 import axios from 'axios';
 
 const initialState: UserState = {
     currentUser: {} as IUser,
+    isUserAuth: false,
 };
 
 export const counterSlice = createSlice({
@@ -21,6 +22,12 @@ export const counterSlice = createSlice({
             })
             .addCase(authUser.fulfilled, (state, action) => {
                 state.currentUser = action.payload;
+            })
+            .addCase(setUserAuth, (state, action) => {
+                state.isUserAuth = action.payload;
+            })
+            .addCase(logOutUser, state => {
+                state.isUserAuth = false;
             });
     },
 });
@@ -28,6 +35,9 @@ export const counterSlice = createSlice({
 // Action creators are generated for each case reducer function
 
 export default counterSlice.reducer;
+
+export const setUserAuth = createAction<boolean>('users/setUserAuth');
+export const logOutUser = createAction('users/logoutUser');
 
 export const regUser = createAsyncThunk('users/regUser', async (payload: PCreateUser): Promise<IUser> => {
     const user = (await axios.post('http://localhost:3001/users', payload)).data;

@@ -46,7 +46,7 @@ const Register = (props: any) => {
     };
 
     const close = props.changeMode;
-    const isLogin = props.onIsLogin;
+    const isReg = props.onIsReg;
 
     const onRegUser = async () => {
         const payload: PCreateUser = {
@@ -57,7 +57,7 @@ const Register = (props: any) => {
 
         dispatch(regUser(payload));
         close();
-        isLogin(true);
+        isReg(true);
     };
 
     return (
@@ -179,6 +179,3 @@ const Register = (props: any) => {
 };
 
 export default Register;
-function dispatch(arg0: any) {
-    throw new Error('Function not implemented.');
-}

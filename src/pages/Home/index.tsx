@@ -10,7 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { add, deletePost, get, saveChangesAsync } from '../../redux/Post';
 import { AppDispatch, RootState } from '../../redux/store';
 import { PCreatePost } from '../../redux/Post/types';
-import { getById } from '../../redux/Users';
+
+import { getById, setUserAuth } from '../../redux/Users';
+
 import PostSkeleton from '../../components/Post/PostSkeleton';
 
 const initialState = { title: '', text: '', contentUrl: '' };
@@ -19,12 +21,22 @@ const Home = () => {
     const [formValues, setFormValues] = useState(initialState);
 
     const { posts, isLoading } = useSelector((state: RootState) => state.post);
+
+    const isUserAuth = useSelector((state: RootState) => state.users.isUserAuth);
+
+
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
         getPosts();
 
         const id = localStorage.getItem('userId');
+
+
+        if (id) {
+            dispatch(setUserAuth(true));
+        }
+
         dispatch(getById(id));
     }, []);
 
@@ -65,19 +77,25 @@ const Home = () => {
     return (
         <div>
             <Header />
+
             <main className="main">
                 <Nav />
                 <div className="content">
+                    {isUserAuth ? (
+                        <>
+                            <span>Вы авторизированы!</span>
+                        </>
+                    ) : (
+                        <span>Авторизации нет!</span>
+                    )}
                     <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />
 
                     <div className="posts">
-                        {isLoading ? (
-                            <PostSkeleton />
-                        ) : (
-                            posts.map(post => {
-                                return <Post onDelete={onDeletePost} post={post} onSaveChanges={onSaveChangesPost} />;
-                            })
-                        )}
+                        {isLoading
+                            ? Array.from({ length: 6 }, (_, index) => <PostSkeleton key={index} />)
+                            : posts.map(post => {
+                                  return <Post onDelete={onDeletePost} post={post} onSaveChanges={onSaveChangesPost} />;
+                              })}
                     </div>
                 </div>
                 <Popular />

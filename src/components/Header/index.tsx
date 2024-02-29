@@ -4,13 +4,17 @@ import { useState } from 'react';
 import './Header.scss';
 import Register from './Register';
 import Auth from './Auth';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store';
+import { logOutUser } from '../../redux/Users';
+
 const Header = () => {
     const [open, setOpen] = useState<boolean>(false);
     const [isReg, setIsReg] = useState<boolean>(true);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [isLogin, setIsLogin] = useState<boolean>(false);
+    const isUserAuth = useSelector((state: RootState) => state.users.isUserAuth);
+    const dispatch = useDispatch<AppDispatch>();
 
     const openn = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -32,9 +36,15 @@ const Header = () => {
         console.log(isReg);
     };
 
-    const onIsLogin = () => {
+    const onIsReg = () => {
         setIsLogin(true);
         setOpen(false);
+    };
+
+    const onLogout = () => {
+        localStorage.removeItem('userId');
+        dispatch(logOutUser());
+        handleClose();
     };
 
     return (
@@ -63,11 +73,7 @@ const Header = () => {
                 </IconButton>
                 <Dialog className="modal" open={open} onClose={onClose}>
                     <div className="modal__wrap">
-                        {isReg ? (
-                            <Auth changeMode={changeMode} onClose={setOpen} onIsLogin={onIsLogin} />
-                        ) : (
-                            <Register changeMode={changeMode} onClose={setOpen} onIsLogin={onIsLogin} />
-                        )}
+                        {isReg ? <Auth changeMode={changeMode} onClose={setOpen} /> : <Register changeMode={changeMode} onClose={setOpen} onIsReg={onIsReg} />}
                     </div>
                 </Dialog>
             </div>
@@ -84,6 +90,7 @@ const Header = () => {
                     <MenuItem onClick={handleClose}>Log In / Sign Up</MenuItem>
                     <MenuItem onClick={handleClose}>Advertise on Reddit</MenuItem>
                     <MenuItem onClick={handleClose}>Shop Collectible Avatars</MenuItem>
+                    {isUserAuth ? <MenuItem onClick={onLogout}>LogOut</MenuItem> : ''}
                 </Menu>
             </div>
         </header>
