@@ -1,4 +1,6 @@
-const Popular = () => {
+import { memo } from 'react';
+
+const Popular = memo(() => {
     return (
         <aside className="aside">
             <div className="aside__popular">POPULAR COMMUNITIES</div>
@@ -47,6 +49,6 @@ const Popular = () => {
             </div>
         </aside>
     );
-};
+});
 
 export default Popular;

@@ -1,10 +1,10 @@
 import './Nav.scss';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { List } from '@mui/material';
 import { INavState, initialState, Topics } from './utils';
 import LinkComponent from '../LinkComponent';
 
-const Nav = () => {
+const Nav = memo(() => {
     const [nav, setNav] = useState<INavState>(initialState);
 
     const changeNav = (key: keyof INavState) => {
@@ -24,6 +24,6 @@ const Nav = () => {
             </a>
         </div>
     );
-};
+});
 
 export default Nav;

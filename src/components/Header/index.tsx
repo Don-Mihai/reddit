@@ -1,6 +1,6 @@
 import { Button, IconButton, Dialog, TextField, dividerClasses, Tooltip, Menu, MenuItem } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import './Header.scss';
 import Register from './Register';
 import Auth from './Auth';
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { logOutUser } from '../../redux/Users';
 
-const Header = () => {
+const Header = memo(() => {
     const [open, setOpen] = useState<boolean>(false);
     const [isReg, setIsReg] = useState<boolean>(true);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -95,6 +95,6 @@ const Header = () => {
             </div>
         </header>
     );
-};
+});
 
 export default Header;
