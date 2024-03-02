@@ -75,32 +75,24 @@ const Home = () => {
     };
 
     return (
-        <div>
-            <Header />
+        <>
+            {isUserAuth ? (
+                <>
+                    <span>Вы авторизированы!</span>
+                </>
+            ) : (
+                <span>Авторизации нет!</span>
+            )}
+            <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />
 
-            <main className="main">
-                <Nav />
-                <div className="content">
-                    {isUserAuth ? (
-                        <>
-                            <span>Вы авторизированы!</span>
-                        </>
-                    ) : (
-                        <span>Авторизации нет!</span>
-                    )}
-                    <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />
-
-                    <div className="posts">
-                        {isLoading
-                            ? Array.from({ length: 6 }, (_, index) => <PostSkeleton key={index} />)
-                            : posts.map(post => {
-                                  return <Post onDelete={onDeletePost} post={post} onSaveChanges={onSaveChangesPost} />;
-                              })}
-                    </div>
-                </div>
-                <Popular />
-            </main>
-        </div>
+            <div className="posts">
+                {isLoading
+                    ? Array.from({ length: 6 }, (_, index) => <PostSkeleton key={index} />)
+                    : posts.map(post => {
+                          return <Post onDelete={onDeletePost} post={post} onSaveChanges={onSaveChangesPost} />;
+                      })}
+            </div>
+        </>
     );
 };
 

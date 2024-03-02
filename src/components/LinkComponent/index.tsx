@@ -2,6 +2,7 @@ import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { ListItemButton, ListItemText, Collapse, List, Button } from '@mui/material';
 import { useState } from 'react';
 import './LinkComponent.scss';
+import { Link } from 'react-router-dom';
 
 const LinkComponent = ({ data, changeNav, nav }: any) => {
     const [isActive, setisActive] = useState(false);
@@ -22,9 +23,9 @@ const LinkComponent = ({ data, changeNav, nav }: any) => {
                 {isShowImg && <img className="component-link__image" src={data?.imgUrl} alt="" />}
 
                 {isLink ? (
-                    <a href={data?.url} className="component-link__item">
+                    <Link to={data?.url} className="component-link__item">
                         <span>{data.name}</span>
-                    </a>
+                    </Link>
                 ) : (
                     isName && <span className="component-link__item">{data.name}</span>
                 )}

@@ -127,12 +127,12 @@ export const initialState: INavState = {
 export const Topics = [
     {
         name: 'HOME',
-        url: 'https://www.reddit.com/?feed=home',
+        url: '/home',
         imgUrl: require('./img/home.png'),
     },
     {
         name: 'POPULAR',
-        url: 'https://www.reddit.com/r/popular/',
+        url: '/popular',
         imgUrl: require('./img/arrow.png'),
     },
     {
