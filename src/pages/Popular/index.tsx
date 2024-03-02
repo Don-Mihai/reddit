@@ -9,7 +9,7 @@ const Popular = () => {
                     return <Post post={post} />;
                 })} */}
             </div>
-            popular
+            popular.
         </div>
     );
 };
