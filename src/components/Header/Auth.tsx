@@ -2,7 +2,7 @@ import { TextField, Button } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
-import { authUser, setUserAuth } from '../../redux/Users';
+import { authUser, getById, setUserAuth } from '../../redux/Users';
 import { PAuthUser } from '../../redux/Users/types';
 
 const Auth = (props: any) => {
@@ -13,6 +13,13 @@ const Auth = (props: any) => {
     const changeMode = props.changeMode;
     const closeAuth = props.onClose;
     const isUserAuth = useSelector((state: RootState) => state.users.isUserAuth);
+
+    useEffect(() => {
+        const id = localStorage.getItem('userId');
+        if (id) {
+            dispatch(setUserAuth(true));
+        }
+    }, [isUserAuth]);
 
     const handleUsernameChange = (event: any) => {
         setUsername(event.target.value);

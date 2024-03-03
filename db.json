@@ -1,43 +1,45 @@
 {
-  "posts": [
-    {
-      "id": "c20d",
-      "title": "qqq",
-      "text": "wqqwqwqew",
-      "contentUrl": ""
-    },
-    {
-      "id": "bc5b",
-      "title": "eeewttttt",
-      "text": "eerer",
-      "contentUrl": ""
-    },
-    {
-      "id": "af90",
-      "title": "1",
-      "text": "1",
-      "contentUrl": "1"
-    }
-  ],
-  "users": [
-    {
-      "username": "a",
-      "email": "o@o.ae",
-      "birthday": "",
-      "id": "1"
-    },
-    {
-      "id": "2",
-      "email": "a@a.ru",
-      "username": "b",
-      "password": "b"
-    },
-    {
-      "id": "99",
-      "email": "c@c.ru",
-      "username": "c",
-      "password": "c",
-      "avatarUrl": ""
-    }
-  ]
+    "posts": [
+        {
+            "id": "c20d",
+            "title": "qqq",
+            "text": "wqqwqwqew",
+            "contentUrl": ""
+        },
+        {
+            "id": "bc5b",
+            "title": "eeewttttt",
+            "text": "eerer",
+            "contentUrl": ""
+        },
+        {
+            "id": "af90",
+            "title": "1",
+            "text": "1",
+            "contentUrl": "1"
+        }
+    ],
+    "users": [
+        {
+            "username": "a",
+            "password": "a",
+            "email": "s@s.ru",
+            "birthdate": "20.12.2000",
+            "id": "1"
+        },
+        {
+            "id": "2",
+            "email": "a@a.ru",
+            "birthdate": "20.12.2000",
+            "username": "b",
+            "password": "b"
+        },
+        {
+            "username": "Henry Ford",
+            "email": "henryford@gmail.com",
+            "password": "123",
+            "birthdate": "02.03.1875",
+            "id": "3"
+        }
+    ]
 }

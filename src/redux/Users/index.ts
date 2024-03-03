@@ -23,6 +23,7 @@ export const usersSlice = createSlice({
             })
             .addCase(authUser.fulfilled, (state, action) => {
                 state.currentUser = action.payload;
+                state.isUserAuth = true;
             })
             .addCase(setUserAuth, (state, action) => {
                 state.isUserAuth = action.payload;
@@ -77,5 +78,10 @@ export const updateUser = createAsyncThunk('users/updateUser', async (payload: a
     const id = localStorage.getItem('userId');
 
     const user = (await axios.put(`http://localhost:3001/users/${id}`, payload)).data;
+    localStorage.setItem('userName', user.username);
+
+    const newPathname = `/${user.username}`;
+    window.history.replaceState({}, '', newPathname);
+
     return user;
 });

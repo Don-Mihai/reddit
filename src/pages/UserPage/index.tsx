@@ -5,8 +5,9 @@ import './UserPage.scss';
 import { useEffect, useState } from 'react';
 import { getById, getUserslist, setUserAuth, updateUser } from '../../redux/Users';
 import { useParams } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 
-const initialState = { username: '', password: '', email: '', birthday: '' };
+const initialState = {} as IUser;
 
 const UserPage = () => {
     const [formValues, setFormValues] = useState(initialState);
@@ -14,7 +15,7 @@ const UserPage = () => {
     const dispatch = useDispatch<AppDispatch>();
     const usersList = useSelector((state: RootState) => state.users.usersList);
     const { username } = useParams<{ username: string }>();
-
+    const isUserAuth = useSelector((state: RootState) => state.users.isUserAuth);
     const user: any = usersList.find((user: IUser) => user.username === username);
 
     useEffect(() => {
@@ -27,10 +28,12 @@ const UserPage = () => {
     }, []);
 
     const onChangeUserData = async () => {
-        const payload: any = {
-            username: formValues.username ? formValues.username : currentUser?.username,
-            email: formValues.email ? formValues.email : currentUser?.email,
-            birthday: formValues.birthday ? formValues.birthday : currentUser?.birthday,
+        const payload: Partial<IUser> = {
+            username: formValues.username ? formValues.username : currentUser.username,
+            email: formValues.email ? formValues.email : currentUser.email,
+            password: formValues.password ? formValues.password : currentUser.password,
+            avatarUrl: formValues.avatarUrl ? formValues.avatarUrl : currentUser.avatarUrl,
+            birthdate: formValues.birthdate ? formValues.birthdate : currentUser.birthdate,
         };
 
         dispatch(updateUser(payload));
@@ -54,18 +57,25 @@ const UserPage = () => {
                                     <div className="userPage__banner-info-date">
                                         <span className="username">{user?.username}</span>
                                         <span className="email">{user?.email}</span>
-                                        <span className="birthdate">20.05.1998</span>
+                                        <span className="birthdate">{user?.birthdate}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {currentUser.id === user.id ? (
+                        {isUserAuth && currentUser.id === user.id ? (
                             <>
                                 <div className="userPage__changes">
                                     <input type="text" placeholder="Username" value={formValues.username} name="username" onChange={onchange} />
                                     <input type="text" placeholder="Password" value={formValues.password} name="password" onChange={onchange} />
                                     <input type="text" placeholder="Email" value={formValues.email} name="email" onChange={onchange} />
-                                    <input type="date" placeholder="Birthday" value={formValues.birthday} name="birthday" onChange={onchange} />
+                                    <InputMask
+                                        type="text"
+                                        placeholder="Birthdate"
+                                        value={formValues.birthdate}
+                                        name="birthdate"
+                                        onChange={onchange}
+                                        mask="99.99.9999"
+                                    />
                                     <button onClick={onChangeUserData}>Сохранить</button>
                                 </div>
                             </>
