@@ -6,9 +6,10 @@ import axios from 'axios';
 const initialState: UserState = {
     currentUser: {} as IUser,
     isUserAuth: false,
+    usersList: [],
 };
 
-export const counterSlice = createSlice({
+export const usersSlice = createSlice({
     name: 'Users',
     initialState,
     reducers: {},
@@ -28,13 +29,19 @@ export const counterSlice = createSlice({
             })
             .addCase(logOutUser, state => {
                 state.isUserAuth = false;
+            })
+            .addCase(getUserslist.fulfilled, (state, action) => {
+                state.usersList = action.payload;
+            })
+            .addCase(updateUser.fulfilled, (state, action) => {
+                state.currentUser = action.payload;
             });
     },
 });
 
 // Action creators are generated for each case reducer function
 
-export default counterSlice.reducer;
+export default usersSlice.reducer;
 
 export const setUserAuth = createAction<boolean>('users/setUserAuth');
 export const logOutUser = createAction('users/logoutUser');
@@ -58,5 +65,17 @@ export const authUser = createAsyncThunk('users/authUser', async (payload: PAuth
         localStorage.setItem('userId', user.id);
     }
 
+    return user;
+});
+
+export const getUserslist = createAsyncThunk('users/getUsersList', async () => {
+    const users = (await axios.get('http://localhost:3001/users')).data;
+    return users;
+});
+
+export const updateUser = createAsyncThunk('users/updateUser', async (payload: any) => {
+    const id = localStorage.getItem('userId');
+
+    const user = (await axios.put(`http://localhost:3001/users/${id}`, payload)).data;
     return user;
 });

@@ -9,7 +9,7 @@ const initialState: PostState = {
     id: [],
 };
 
-export const counterSlice = createSlice({
+export const postSlice = createSlice({
     name: 'Post',
     initialState,
     reducers: {},
@@ -36,9 +36,9 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {} = counterSlice.actions;
+export const {} = postSlice.actions;
 
-export default counterSlice.reducer;
+export default postSlice.reducer;
 
 export const get = createAsyncThunk('post/get', async (): Promise<IPost[]> => {
     const posts = (await axios.get('http://localhost:3001/posts')).data;

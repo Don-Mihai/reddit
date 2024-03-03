@@ -24,14 +24,12 @@ const Home = () => {
 
     const isUserAuth = useSelector((state: RootState) => state.users.isUserAuth);
 
-
     const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
         getPosts();
 
         const id = localStorage.getItem('userId');
-
 
         if (id) {
             dispatch(setUserAuth(true));
@@ -79,11 +77,11 @@ const Home = () => {
             {isUserAuth ? (
                 <>
                     <span>Вы авторизированы!</span>
+                    <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />
                 </>
             ) : (
                 <span>Авторизации нет!</span>
             )}
-            <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />
 
             <div className="posts">
                 {isLoading

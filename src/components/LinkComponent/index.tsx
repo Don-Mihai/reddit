@@ -12,11 +12,6 @@ const LinkComponent = ({ data, changeNav, nav }: any) => {
     const isName = Boolean(data?.name);
     const isShowBorder = Boolean(!data?.sublinks?.length && !data?.imgUrl);
 
-    // const check = () => {
-    // 	setisActive(currentUrl === data.url);
-    // }
-    // check()
-
     return (
         <div className={`component-link ${isShowBorder ? 'component-link__subitem' : ''}`}>
             <ListItemButton className={`component-link__title ${isActive ? 'active' : ''}`} onClick={() => changeNav?.(data?.objKey)}>
