@@ -1,6 +1,7 @@
 export interface IUser {
     id: number;
     username: string;
+    birthdate: string;
     email: string;
     password: string;
     avatarUrl: string;
@@ -18,6 +19,7 @@ export interface PAuthUser {
 }
 
 export interface UserState {
+    usersList: [];
     currentUser: IUser;
     isUserAuth: boolean;
 }
