@@ -1,11 +1,8 @@
-import Header from '../../components/Header';
-import Nav from '../../components/Nav/Nav';
 import './Home.scss';
 import Post from '../../components/Post/post';
 import CreatePost from '../../components/CreatePost';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Popular from './Popular';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { add, deletePost, get, saveChangesAsync } from '../../redux/Post';
 import { AppDispatch, RootState } from '../../redux/store';
@@ -18,80 +15,79 @@ import PostSkeleton from '../../components/Post/PostSkeleton';
 const initialState = { title: '', text: '', contentUrl: '' };
 
 const Home = () => {
-    const [formValues, setFormValues] = useState(initialState);
+  const [formValues, setFormValues] = useState(initialState);
 
-    const { posts, isLoading } = useSelector((state: RootState) => state.post);
+  const { posts, isLoading } = useSelector((state: RootState) => state.post);
 
-    const isUserAuth = useSelector((state: RootState) => state.users.isUserAuth);
+  const isUserAuth = useSelector((state: RootState) => state.users.isUserAuth);
 
-    const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
+  const getPosts = async () => {
+    dispatch(get());
+  };
 
-    useEffect(() => {
-        getPosts();
+  useEffect(() => {
+    getPosts();
 
-        const id = localStorage.getItem('userId');
+    const id = localStorage.getItem('userId');
 
-        if (id) {
-            dispatch(setUserAuth(true));
-        }
+    if (id) {
+      dispatch(setUserAuth(true));
+    }
 
-        dispatch(getById(id));
-    }, []);
+    dispatch(getById(id));
+  }, []);
 
-    const clear = () => {
-        setFormValues(initialState);
+  const clear = () => {
+    setFormValues(initialState);
+  };
+
+  const addPost = async () => {
+    const payload: PCreatePost = {
+      title: formValues.title,
+      text: formValues.text,
+      contentUrl: formValues.contentUrl,
     };
 
-    const addPost = async () => {
-        const payload: PCreatePost = {
-            title: formValues.title,
-            text: formValues.text,
-            contentUrl: formValues.contentUrl,
-        };
+    dispatch(add(payload));
 
-        dispatch(add(payload));
+    clear();
+  };
 
-        clear();
-    };
+  const onchange = (event: any) => {
+    const key = event.target.name;
+    const value = event.target.value;
+    setFormValues({ ...formValues, [key]: value });
+  };
 
-    const onchange = (event: any) => {
-        const key = event.target.name;
-        const value = event.target.value;
-        setFormValues({ ...formValues, [key]: value });
-    };
+  const onDeletePost = async (postId: number | string) => {
+    dispatch(deletePost(postId));
+  };
 
-    const getPosts = async () => {
-        dispatch(get());
-    };
+  const onSaveChangesPost = async (formValues: any, postId: number | string) => {
+    dispatch(saveChangesAsync({ formValues, postId }));
+  };
 
-    const onDeletePost = async (postId: number | string) => {
-        dispatch(deletePost(postId));
-    };
-
-    const onSaveChangesPost = async (formValues: any, postId: number | string) => {
-        dispatch(saveChangesAsync({ formValues, postId }));
-    };
-
-    return (
+  return (
+    <>
+      {isUserAuth ? (
         <>
-            {isUserAuth ? (
-                <>
-                    <span>Вы авторизированы!</span>
-                    <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />
-                </>
-            ) : (
-                <span>Авторизации нет!</span>
-            )}
-
-            <div className="posts">
-                {isLoading
-                    ? Array.from({ length: 6 }, (_, index) => <PostSkeleton key={index} />)
-                    : posts.map(post => {
-                          return <Post onDelete={onDeletePost} post={post} onSaveChanges={onSaveChangesPost} />;
-                      })}
-            </div>
+          <span>Вы авторизированы!</span>
+          <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />
         </>
-    );
+      ) : (
+        <span>Авторизации нет!</span>
+      )}
+
+      <div className="posts">
+        {isLoading
+          ? Array.from({ length: 6 }, (_, index) => <PostSkeleton key={index} />)
+          : posts.map((post) => {
+              return <Post onDelete={onDeletePost} post={post} onSaveChanges={onSaveChangesPost} />;
+            })}
+      </div>
+    </>
+  );
 };
 
 export default Home;
