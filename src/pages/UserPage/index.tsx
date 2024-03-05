@@ -35,6 +35,7 @@ const UserPage = () => {
       avatarUrl: formValues.avatarUrl ? formValues.avatarUrl : currentUser.avatarUrl,
       birthdate: formValues.birthdate ? formValues.birthdate : currentUser.birthdate,
     };
+    console.log(2);
 
     dispatch(updateUser(payload));
   };
