@@ -70,14 +70,7 @@ const Home = () => {
 
   return (
     <>
-      {isUserAuth ? (
-        <>
-          <span>Вы авторизированы!</span>
-          <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />
-        </>
-      ) : (
-        <span>Авторизации нет!</span>
-      )}
+      {isUserAuth && <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />}
 
       <div className="posts">
         {isLoading

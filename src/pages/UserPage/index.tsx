@@ -5,37 +5,41 @@ import './UserPage.scss';
 import { useEffect, useState } from 'react';
 import { getById, getUserslist, setUserAuth, updateUser } from '../../redux/Users';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 // import InputMask from 'react-input-mask';
 
 const initialState = {} as IUser;
 
 const UserPage = () => {
   const [formValues, setFormValues] = useState(initialState);
-  const currentUser = useSelector((state: RootState) => state.users.currentUser);
+  const { currentUser, isUserAuth } = useSelector((state: RootState) => state.users);
+  const [user, setUser] = useState(null as IUser | null);
+
+  const { userId } = useParams();
   const dispatch = useDispatch<AppDispatch>();
-  const usersList = useSelector((state: RootState) => state.users.usersList);
-  const { username } = useParams<{ username: string }>();
-  const isUserAuth = useSelector((state: RootState) => state.users.isUserAuth);
-  const user: any = usersList.find((user: IUser) => user.username === username);
+
+  const getUser = async () => {
+    const user = (await axios.get(`/user/${userId}`)).data;
+    setUser(user);
+  };
 
   useEffect(() => {
-    const id = localStorage.getItem('userId');
-    if (id) {
+    getUser();
+
+    if (userId) {
       dispatch(setUserAuth(true));
     }
-    dispatch(getById(id));
-    dispatch(getUserslist());
-  }, [dispatch]);
+    dispatch(getById(userId || null));
+  }, []);
 
   const onChangeUserData = async () => {
     const payload: Partial<IUser> = {
-      username: formValues.username ? formValues.username : currentUser.username,
-      email: formValues.email ? formValues.email : currentUser.email,
-      password: formValues.password ? formValues.password : currentUser.password,
-      avatarUrl: formValues.avatarUrl ? formValues.avatarUrl : currentUser.avatarUrl,
-      birthdate: formValues.birthdate ? formValues.birthdate : currentUser.birthdate,
+      username: formValues.username,
+      email: formValues.email,
+      password: formValues.password,
+      avatarUrl: formValues.avatarUrl,
+      birthdate: formValues.birthdate,
     };
-    console.log(2);
 
     dispatch(updateUser(payload));
   };
