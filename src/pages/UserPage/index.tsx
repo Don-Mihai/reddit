@@ -16,21 +16,22 @@ const UserPage = () => {
   const { currentUser, isUserAuth } = useSelector((state: RootState) => state.users);
   const [user, setUser] = useState(null as IUser | null);
 
-  const { userId } = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
 
   const getUser = async () => {
-    const user = (await axios.get(`/user/${userId}`)).data;
+    const user = (await axios.get(`http://localhost:3001/users/${id}`)).data;
     setUser(user);
+    setFormValues(user);
   };
 
   useEffect(() => {
     getUser();
 
-    if (userId) {
+    if (id) {
       dispatch(setUserAuth(true));
     }
-    dispatch(getById(userId || null));
+    dispatch(getById(id || null));
   }, []);
 
   const onChangeUserData = async () => {

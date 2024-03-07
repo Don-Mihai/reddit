@@ -13,30 +13,30 @@ import UserPage from './pages/UserPage';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 const routes = createBrowserRouter([
-    {
-        path: '/',
-        element: <MainPages />,
-        children: [
-            {
-                path: '/home',
-                element: <Home />,
-            },
-            {
-                path: '/popular',
-                element: <Popular />,
-            },
-            {
-                path: '/:username',
-                element: <UserPage />,
-            },
-        ],
-    },
+  {
+    path: '/',
+    element: <MainPages />,
+    children: [
+      {
+        path: '/home',
+        element: <Home />,
+      },
+      {
+        path: '/popular',
+        element: <Popular />,
+      },
+      {
+        path: '/users/:id',
+        element: <UserPage />,
+      },
+    ],
+  },
 ]);
 
 root.render(
-    <Provider store={store}>
-        <RouterProvider router={routes} />
-    </Provider>
+  <Provider store={store}>
+    <RouterProvider router={routes} />
+  </Provider>
 );
 
 document.getElementById('root');

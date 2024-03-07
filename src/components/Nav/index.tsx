@@ -22,7 +22,7 @@ const Nav = memo(() => {
       <List className="nav__list nav__list-padding" sx={{ width: '100%', maxWidth: 220 }}>
         {isUserAuth ? (
           <>
-            <Link to={`/${user?.id}`} className="user">
+            <Link to={`/users/${user?.id}`} className="user">
               <div className="user__logo">
                 <Avatar src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
               </div>
