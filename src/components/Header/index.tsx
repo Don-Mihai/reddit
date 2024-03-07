@@ -70,9 +70,12 @@ const Header = memo(() => {
           <img className="actions__app-img" src={require('./img/qr.png')} alt="Popular" />
           <div>Get app</div>
         </Button>
+        {!isLogin ? '' :
         <Button className="actions__login-btn btn" onClick={onOpen} variant="contained">
           Log in
         </Button>
+        }
+
         <IconButton className="actions__icon-btn btn" onClick={handleClick}>
           {' '}
           <MoreHorizIcon />{' '}
