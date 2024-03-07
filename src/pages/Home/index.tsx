@@ -1,5 +1,5 @@
 import './Home.scss';
-import Post from '../../components/Post/post';
+import Post from '../../components/Post';
 import CreatePost from '../../components/CreatePost';
 import { useEffect, useState } from 'react';
 
