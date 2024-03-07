@@ -1,4 +1,4 @@
-import { Menu, MenuItem, TextField, TextareaAutosize } from '@mui/material';
+import { Avatar, Menu, MenuItem, TextField, TextareaAutosize } from '@mui/material';
 import { IconButton } from '@mui/material';
 import { useState } from 'react';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -57,7 +57,7 @@ const Post = ({ post, onDelete, onSaveChanges }: Props) => {
       <div className="Header">
         <div className="group">
           <div className="icon">
-            <img src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
+          <Avatar src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
           </div>
           {!isEditMode ? <div className="title">{post?.title}</div> : <TextField name="title" onChange={onChange} value={formValues?.title} />}
         </div>

@@ -30,7 +30,9 @@
 
 .main {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    max-width: 1535px;
+    margin: 0 auto;
 }
 
 .logo {

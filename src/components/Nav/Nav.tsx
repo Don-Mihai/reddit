@@ -1,6 +1,6 @@
 import './Nav.scss';
 import { useState, memo } from 'react';
-import { List } from '@mui/material';
+import { Avatar, List } from '@mui/material';
 import { INavState, initialState, Topics } from './utils';
 import LinkComponent from '../LinkComponent';
 import { useSelector } from 'react-redux';
@@ -24,7 +24,7 @@ const Nav = memo(() => {
                     <>
                         <Link to={`/${user?.username}`} className="user">
                             <div className="user__logo">
-                                <img src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
+                                <Avatar src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
                             </div>
                             <div className="user__name">{user?.username}</div>
                         </Link>
