@@ -1,76 +1,74 @@
 .aside {
-    max-width: 320px;
+  max-width: 320px;
+  width: 100%;
+  background-color: #576f761a;
+  padding: 0px 16px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: 20px;
+
+  &__popular {
     width: 100%;
-    background-color: #576f761a;
-    padding: 0px 16px;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 10px;
-    margin-top: 20px;
+    height: 40px;
+    color: #576f76;
+    font-size: 12px;
+    margin-top: 12px;
+  }
 
-    &__popular {
-        width: 100%;
-        height: 40px;
-        color: #576f76;
-        font-size: 12px;
-        margin-top: 12px;
+  &__popular-list {
+    width: 100%;
+    gap: 20px;
+
+    &__container {
+      width: 100%;
+      height: 56px;
     }
-
-    &__popular-list {
-        width: 100%;
-        height: 366px;
-        gap: 20px;
-
-        &__container {
-            width: 100%;
-            height: 56px;
-        }
-    }
+  }
 }
 
 .main {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .logo {
+  display: flex;
+  margin-top: 20px;
+  margin-left: 10px;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #2a3c421f;
+    border-radius: 5px;
+  }
+
+  &__img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
     display: flex;
-    margin-top: 20px;
-    margin-left: 10px;
-    text-decoration: none;
+    justify-content: center;
+  }
 
-    &:hover {
-        width: 300px;
-        background-color: #2a3c421f;
-        border-radius: 5px;
+  &__name {
+    padding-left: 10px;
+
+    &__text {
+      align-items: center;
+      font-size: 14px;
+      color: #2a3c42;
     }
 
-    &__img {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
+    &__members {
+      align-items: center;
+      font-size: 12px;
+      padding-top: 5px;
     }
-
-    &__name {
-        padding-left: 10px;
-
-        &__text {
-            align-items: center;
-            font-size: 14px;
-            color: #2a3c42;
-        }
-
-        &__members {
-            align-items: center;
-            font-size: 12px;
-            padding-top: 5px;
-        }
-    }
+  }
 }
 
 .posts {
-    display: flex;
-    flex-direction: column-reverse;
+  display: flex;
+  flex-direction: column-reverse;
 }
