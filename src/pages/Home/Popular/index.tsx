@@ -1,4 +1,5 @@
-import { memo } from "react";
+import { Avatar } from '@mui/material';
+import { memo } from 'react';
 
 const Popular = memo(() => {
   return (
@@ -7,7 +8,7 @@ const Popular = memo(() => {
       <div className="aside__popular-list">
         <div className="popular-list__container">
           <a className="logo" target="blank" href="/">
-            <img className="logo__img" src="./Popular/Images/eli5.jpg" alt="Popular"></img>
+            <Avatar src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
             <div className="logo__name">
               <div className="logo__name__text">r/explainlikeimfive</div>
               <div className="logo__name__members">22,736,231 members</div>
@@ -15,7 +16,7 @@ const Popular = memo(() => {
           </a>
 
           <a className="logo" href="/">
-            <img className="logo__img" src="../Popular/Images/KZESzgF91cP3KEAR29JhCFmX0zxsPgY1sYhv7XCtiW0.jpg" alt="Popular"></img>
+            <Avatar src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
             <div className="logo__name">
               <div className="logo__name__text">r/explainlikeimfive</div>
               <div className="logo__name__members">22,736,231 members</div>
@@ -23,7 +24,7 @@ const Popular = memo(() => {
           </a>
 
           <a className="logo" href="/">
-            <img className="logo__img" src="../Popular/Images/KZESzgF91cP3KEAR29JhCFmX0zxsPgY1sYhv7XCtiW0.jpg" alt="Popular"></img>
+            <Avatar src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
             <div className="logo__name">
               <div className="logo__name__text">r/explainlikeimfive</div>
               <div className="logo__name__members">22,736,231 members</div>
@@ -31,7 +32,8 @@ const Popular = memo(() => {
           </a>
 
           <a className="logo" href="/">
-            <img className="logo__img" src="../Popular/Images/KZESzgF91cP3KEAR29JhCFmX0zxsPgY1sYhv7XCtiW0.jpg" alt="Popular"></img>
+            <Avatar src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
+
             <div className="logo__name">
               <div className="logo__name__text">r/explainlikeimfive</div>
               <div className="logo__name__members">22,736,231 members</div>
@@ -39,7 +41,7 @@ const Popular = memo(() => {
           </a>
 
           <a className="logo" href="/">
-            <img className="logo__img" src="../Popular/Images/KZESzgF91cP3KEAR29JhCFmX0zxsPgY1sYhv7XCtiW0.jpg" alt="Popular"></img>
+            <Avatar src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
             <div className="logo__name">
               <div className="logo__name__text">r/explainlikeimfive</div>
               <div className="logo__name__members">22,736,231 members</div>

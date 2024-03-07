@@ -7,6 +7,7 @@ import Auth from './Auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { logOutUser } from '../../redux/Users';
+import { Link } from 'react-router-dom';
 
 const Header = memo(() => {
   const [open, setOpen] = useState<boolean>(false);
@@ -49,12 +50,14 @@ const Header = memo(() => {
 
   const logo = useMemo(() => {
     return (
-      <Tooltip title="Go to Reddit Home" arrow className="header__tooltip">
-        <div className="header__logo">
-          <img className="header__logo__img" src={require('./img/logo.png')} alt="Logo" />
-          <img className="header__logo__img-wordmark" src={require('./img/wordmark.png')} alt="Logo" />
-        </div>
-      </Tooltip>
+      <Link to={'/Home'} className="link-home">
+        <Tooltip title="Go to Reddit Home" arrow className="header__tooltip">
+          <div className="header__logo">
+            <img className="header__logo__img" src={require('./img/logo.png')} alt="Logo" />
+            <img className="header__logo__img-wordmark" src={require('./img/wordmark.png')} alt="Logo" />
+          </div>
+        </Tooltip>
+      </Link>
     );
   }, []);
 
@@ -70,11 +73,13 @@ const Header = memo(() => {
           <img className="actions__app-img" src={require('./img/qr.png')} alt="Popular" />
           <div>Get app</div>
         </Button>
-        {!isLogin ? '' :
-        <Button className="actions__login-btn btn" onClick={onOpen} variant="contained">
-          Log in
-        </Button>
-        }
+        {!isLogin ? (
+          ''
+        ) : (
+          <Button className="actions__login-btn btn" onClick={onOpen} variant="contained">
+            Log in
+          </Button>
+        )}
 
         <IconButton className="actions__icon-btn btn" onClick={handleClick}>
           {' '}
