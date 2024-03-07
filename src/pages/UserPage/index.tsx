@@ -5,6 +5,7 @@ import './UserPage.scss';
 import { useEffect, useState } from 'react';
 import { getById, getUserslist, setUserAuth, updateUser } from '../../redux/Users';
 import { useParams } from 'react-router-dom';
+import { Avatar } from '@mui/material';
 // import InputMask from 'react-input-mask';
 
 const initialState = {} as IUser;
@@ -54,7 +55,7 @@ const UserPage = () => {
             <div className="userPage__info">
               <div className="userPage__banner">
                 <div className="userPage__banner-info">
-                  <img src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" className="userPage__logo" alt="Popular" />
+                <Avatar src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
                   <div className="userPage__banner-info-date">
                     <span className="username">{user?.username}</span>
                     <span className="email">{user?.email}</span>
