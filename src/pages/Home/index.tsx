@@ -11,6 +11,8 @@ import { PCreatePost } from '../../redux/Post/types';
 import { getById, setUserAuth } from '../../redux/Users';
 
 import PostSkeleton from '../../components/Post/PostSkeleton';
+import Button from '@mui/material/Button';
+import axios from 'axios';
 
 const initialState = { title: '', text: '', contentUrl: '' };
 
@@ -71,6 +73,8 @@ const Home = () => {
   return (
     <>
       {isUserAuth && <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />}
+
+      <Button onClick={() => axios.get('http://localhost:5000/user')}>Получиьт пользователя</Button>
 
       <div className="posts">
         {isLoading
