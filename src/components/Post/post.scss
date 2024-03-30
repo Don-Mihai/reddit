@@ -1,99 +1,101 @@
 .post {
-    width: 650px;
-    max-height: 700px;
-    border: 1px gray;
-    border-radius: 5px;
+  width: 650px;
+  height: fit-content;
+  border: 1px gray;
+  border-radius: 5px;
+  padding: 10px;
+}
 
-    .image {
-        img {
-            // width: 100%;
-        }
-    }
+.hoverable:hover {
+  background-color: rgba(0, 0, 0, 0.138);
 }
 
 .Header {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
 }
 
 .cats_text {
-    font-size: 20px;
-    color: gray;
+  font-size: 20px;
+  color: gray;
 }
 
 .buttons {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .group {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .join {
-    margin: 3px;
-    border-radius: 10px;
-    background-color: rgb(87, 61, 217);
-    color: aliceblue;
-    cursor: pointer;
+  margin: 3px;
+  border-radius: 10px;
+  background-color: rgb(87, 61, 217);
+  color: aliceblue;
+  cursor: pointer;
 }
 
 .option {
-    margin: 3px;
-    border-radius: 20px;
-    cursor: pointer;
-    border: 1px rgb(101, 101, 101);
+  margin: 3px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 1px rgb(101, 101, 101);
 }
 
 .content {
-    margin-top: 10px;
-    padding: 10px;
+  margin-top: 10px;
+  padding: 10px;
 }
 
 .image {
-    height: 550px;
-    width: 590px;
+  width: inherit;
+  height: 100%;
 }
 
 .footer {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .icon {
-    height: 16px;
-    width: 16px;
-    cursor: pointer;
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
 }
 
 .like {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    cursor: pointer;
-    border-radius: 15px;
-    border: 1px rgb(100, 100, 100);
-    padding: 10px;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  cursor: pointer;
+  border-radius: 15px;
+  border: 1px rgb(100, 100, 100);
+  padding: 10px;
 }
 
 .comment {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    cursor: pointer;
-    border-radius: 15px;
-    border: 1px rgb(100, 100, 100);
-    padding: 10px;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  cursor: pointer;
+  border-radius: 15px;
+  border: 1px rgb(100, 100, 100);
+  padding: 10px;
 }
 
 .repost {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    cursor: pointer;
-    border-radius: 15px;
-    border: 1px rgb(100, 100, 100);
-    padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 15px;
+  cursor: pointer;
+  border-radius: 15px;
+  border: 1px rgb(100, 100, 100);
+  padding: 10px;
+  gap: 4px;
+  width: 90px;
 }

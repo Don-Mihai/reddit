@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import MainPages from './pages/MainPages';
 import UserPage from './pages/UserPage';
+import PostPage from './pages/PostPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -28,6 +29,10 @@ const routes = createBrowserRouter([
       {
         path: '/users/:id',
         element: <UserPage />,
+      },
+      {
+        path: '/home/:id',
+        element: <PostPage />,
       },
     ],
   },

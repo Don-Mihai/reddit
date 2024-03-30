@@ -13,6 +13,7 @@ import { getById, setUserAuth } from '../../redux/Users';
 import PostSkeleton from '../../components/Post/PostSkeleton';
 import Button from '@mui/material/Button';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const initialState = { title: '', text: '', contentUrl: '' };
 
@@ -69,6 +70,10 @@ const Home = () => {
   const onSaveChangesPost = async (formValues: any, postId: number | string) => {
     dispatch(saveChangesAsync({ formValues, postId }));
   };
+  const navigate = useNavigate();
+  const onOpenPost = (id: any) => {
+    navigate(id);
+  };
 
   return (
     <>
@@ -80,7 +85,7 @@ const Home = () => {
         {isLoading
           ? Array.from({ length: 6 }, (_, index) => <PostSkeleton key={index} />)
           : posts.map((post) => {
-              return <Post onDelete={onDeletePost} post={post} onSaveChanges={onSaveChangesPost} />;
+              return <Post onDelete={onDeletePost} post={post} onSaveChanges={onSaveChangesPost} onOpenPost={onOpenPost} isHomePage={true} />;
             })}
       </div>
     </>
