@@ -28,6 +28,13 @@
       "id": "1"
     },
     {
+      "username": "1",
+      "email": "s@s.ru",
+      "password": "1",
+      "birthdate": "20.12.2000",
+      "id": "r4"
+    },
+    {
       "id": "2",
       "email": "a@a.ru",
       "birthdate": "20.12.2000",

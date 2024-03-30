@@ -36,10 +36,12 @@ const Auth = (props: any) => {
       username,
       password,
     };
-
-    dispatch(authUser(payload));
-    if (isUserAuth) {
+    const result = await dispatch(authUser(payload)); // await the result
+    if (authUser.fulfilled.match(result)) {
+      // check if the action is fulfilled
       closeAuth();
+    } else {
+      alert('Wrong username or password');
     }
   };
 

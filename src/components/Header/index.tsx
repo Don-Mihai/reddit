@@ -101,7 +101,7 @@ const Header = memo(() => {
             'aria-labelledby': 'basic-button',
           }}
         >
-          <MenuItem onClick={handleClose}>Log In / Sign Up</MenuItem>
+          {!isUserAuth ? <MenuItem onClick={onOpen}>Log In / Sign Up</MenuItem> : ''}
           <MenuItem onClick={handleClose}>Advertise on Reddit</MenuItem>
           <MenuItem onClick={handleClose}>Shop Collectible Avatars</MenuItem>
           {isUserAuth ? <MenuItem onClick={onLogout}>LogOut</MenuItem> : ''}
