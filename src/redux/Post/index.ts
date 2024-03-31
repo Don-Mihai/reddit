@@ -53,6 +53,14 @@ export const postSlice = createSlice({
       const { updatedPost } = action.payload;
       state.posts = state.posts.map((post) => (post.id === updatedPost.id ? (updatedPost as IPost) : post));
     });
+    builder.addCase(likePost.fulfilled, (state, action) => {
+      const updatedPost = action.payload as IPost;
+      state.posts = state.posts.map((post) => (post.id === updatedPost.id ? updatedPost : post));
+    });
+    builder.addCase(dislikePost.fulfilled, (state, action) => {
+      const updatedPost = action.payload as IPost;
+      state.posts = state.posts.map((post) => (post.id === updatedPost.id ? updatedPost : post));
+    });
   },
 });
 
@@ -89,4 +97,14 @@ export const saveChangesAsync = createAsyncThunk('post/saveChanges', async (data
   const updatedPost = (await axios.get(`http://localhost:3001/posts/${formValues.id}`)).data;
 
   return { updatedPost };
+});
+
+export const likePost = createAsyncThunk('post/like', async (postId: number | string): Promise<IPost> => {
+  const response = await axios.patch(`http://localhost:3001/posts/${postId}/like`);
+  return response.data;
+});
+
+export const dislikePost = createAsyncThunk('post/dislike', async (postId: number | string): Promise<IPost> => {
+  const response = await axios.patch(`http://localhost:3001/posts/${postId}/dislike`);
+  return response.data;
 });
