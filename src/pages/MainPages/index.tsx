@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../../components/Header';
 import Nav from '../../components/Nav';
-import Popular from '../Home/Popular';
+import Popular from '../../components/Popular';
 
 const MainPages = () => {
   return (
