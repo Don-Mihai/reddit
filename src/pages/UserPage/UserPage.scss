@@ -1,42 +1,43 @@
 .userPage {
-    width: 650px;
-    &__info {
-    }
-    &__banner {
-        background-image: url('./images/banner-reddit.webp');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        height: 400px;
-        position: relative;
-        margin-bottom: 20px;
-        &-info {
-            padding: 15px 15px;
-            display: flex;
-            position: absolute;
-            bottom: 0;
-            gap: 10px;
-            img {
-            }
-            &-date {
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-            }
-        }
-    }
-    &__changes {
+  width: 650px;
+  &__info {
+  }
+  &__banner {
+    background-image: url('./images/banner-reddit.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    position: relative;
+    margin-bottom: 20px;
+    &-info {
+      padding: 15px 15px;
+      display: flex;
+      position: absolute;
+      bottom: 0;
+      gap: 10px;
+      align-items: flex-start;
+      img {
+      }
+      &-date {
         display: flex;
         flex-direction: column;
-        padding: 0px 15px;
-        input {
-            width: 100%;
-            line-height: 30px;
-            margin-bottom: 15px;
-            padding-left: 10px;
-        }
-        button {
-            line-height: 30px;
-        }
+        gap: 5px;
+      }
     }
+  }
+  &__changes {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 15px;
+    input {
+      width: 100%;
+      line-height: 30px;
+      margin-bottom: 15px;
+      padding-left: 10px;
+    }
+    button {
+      line-height: 30px;
+    }
+  }
 }

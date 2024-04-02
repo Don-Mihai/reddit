@@ -7,6 +7,7 @@ import { getById, getUserslist, setUserAuth, updateUser } from '../../redux/User
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Avatar } from '@mui/material';
+import FileDrop from '../../components/FileDrop';
 // import InputMask from 'react-input-mask';
 
 const initialState = {} as IUser;
@@ -52,6 +53,13 @@ const UserPage = () => {
     setFormValues({ ...formValues, [key]: value });
   };
 
+  const changeUserAvatar = (file: Blob) => {
+    const formData = new FormData();
+    formData.append('filedata', file);
+
+    axios.post('http://localhost:5000/user/avatar', formData);
+  };
+
   return (
     <>
       {user ? (
@@ -60,7 +68,10 @@ const UserPage = () => {
             <div className="userPage__info">
               <div className="userPage__banner">
                 <div className="userPage__banner-info">
-                  <Avatar src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
+                  <FileDrop onSendFiles={changeUserAvatar}>
+                    <Avatar sx={{ height: '60px', width: '60px' }} src={user?.avatarUrl} alt="" />
+                  </FileDrop>
+
                   <div className="userPage__banner-info-date">
                     <span className="username">{user?.username}</span>
                     <span className="email">{user?.email}</span>

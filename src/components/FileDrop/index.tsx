@@ -47,7 +47,7 @@ const FileDrop = ({ children, borderRadius, onSendFiles }: Props) => {
       files.push(item);
     }
 
-    onSendFiles && onSendFiles(files[0] as Blob);
+    onSendFiles?.(files[0] as Blob);
     evt.target.value = '';
   };
 
