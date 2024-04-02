@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { regUser } from '../../redux/Users';
 import { AppDispatch } from '../../redux/store';
 import { PCreateUser } from '../../redux/Users/types';
+import axios from 'axios';
 const EMAILREGEXP = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
 const initialState = { email: '', username: '', password: '' };
@@ -42,7 +43,8 @@ const Register = (props: any) => {
   };
 
   const registerEmail = () => {
-    setRegMail(!regMail);
+    axios.post('http://localhost:5000/user/register', { email: formValues.email });
+    // setRegMail(!regMail);
   };
 
   const close = props.changeMode;
