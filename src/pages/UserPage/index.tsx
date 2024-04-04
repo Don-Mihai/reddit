@@ -57,7 +57,7 @@ const UserPage = () => {
     const formData = new FormData();
     formData.append('filedata', file);
 
-    axios.post('http://localhost:5000/user/avatar', formData);
+    axios.post('http://localhost:5000/user/upload-avatar', formData);
   };
 
   return (
