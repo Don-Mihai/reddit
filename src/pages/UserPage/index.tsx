@@ -69,7 +69,7 @@ const UserPage = () => {
               <div className="userPage__banner">
                 <div className="userPage__banner-info">
                   <FileDrop onSendFiles={changeUserAvatar}>
-                    <Avatar sx={{ height: '60px', width: '60px' }} src={user?.avatarUrl} alt="" />
+                    <Avatar sx={{ height: '60px', width: '60px' }} src={''} alt="" />
                   </FileDrop>
 
                   <div className="userPage__banner-info-date">
