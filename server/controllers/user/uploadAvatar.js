@@ -45,7 +45,7 @@ const uploadAvatar = expressAsyncHandler((req, res) => {
   } else {
     // Сохраняем путь до изображения в файле db.json
     console.log('userId', userId);
-    saveData(userId, 'gallery', [{ galleryUrl: filedata.filename, date }]);
+    saveData(userId, 'gallery', filedata.filename);
     res.send(filedata.filename);
   }
 
