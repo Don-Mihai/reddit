@@ -85,9 +85,9 @@ const Post = ({ post, onDelete, onSaveChanges, onOpenPost, isHomePage }: Props) 
     const formData = new FormData();
     formData.append('filedata', file);
 
-    const url: string = (await axios.post(`http://localhost:5000/user/upload-avatar?userId=${user?.id}`, formData)).data;
-    // @ts-ignore
-    setUser({ ...user, avatarUrl: url });
+    const url: string = (await axios.post(`http://localhost:5000/post/upload-image?id=${post?.id}`, formData)).data;
+
+    onSaveChanges({ ...post, contentUrl: url }, post?.id);
   };
 
   return (
@@ -132,15 +132,15 @@ const Post = ({ post, onDelete, onSaveChanges, onOpenPost, isHomePage }: Props) 
           </Menu>
         </div>
       </div>
-      <div className="content" onClick={() => onOpenPost(post.id)} style={isHomePage ? { cursor: 'pointer' } : {}}>
+      <div className="content" onClick={isEditMode ? () => {} : () => onOpenPost(post.id)} style={isHomePage ? { cursor: 'pointer' } : {}}>
         {!isEditMode ? <span className="cats_text">{post?.text}</span> : <TextareaAutosize name="text" onChange={onChange} value={formValues?.text} />}
         {Boolean(post?.contentUrl) && (
           <div className="image">
-            <img src={post?.contentUrl} alt="cats" />
+            <img src={`http://localhost:5000/` + post?.contentUrl} alt="cats" />
           </div>
         )}
         {isEditMode && (
-          <FileDrop onSendFiles={changePostImg}>
+          <FileDrop onSendFiles={changePostImg} borderRadius="0">
             <div className="post__drop"></div>
           </FileDrop>
         )}

@@ -4,7 +4,21 @@
       "id": "4944",
       "title": "новвая задача",
       "text": "qqq",
-      "contentUrl": "",
+      "contentUrl": "1712688139898-love.png",
+      "author": {
+        "username": "admin",
+        "email": "s@s.ru",
+        "password": "admin",
+        "birthdate": "20.12.2000",
+        "id": "1",
+        "avatarUrl": "1712684035094-cat.png"
+      }
+    },
+    {
+      "id": "5760",
+      "title": "моисей",
+      "text": "альфред",
+      "contentUrl": "1712688227330-cat.png",
       "author": {
         "username": "admin",
         "email": "s@s.ru",
