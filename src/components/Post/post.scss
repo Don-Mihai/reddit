@@ -4,6 +4,13 @@
   border: 1px gray;
   border-radius: 5px;
   padding: 10px;
+
+  &__drop {
+    width: 100%;
+    height: 80px;
+    border: 1px dotted rgb(26, 112, 241);
+  }
+
 }
 
 .hoverable:hover {

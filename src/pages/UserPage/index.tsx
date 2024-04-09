@@ -53,11 +53,13 @@ const UserPage = () => {
     setFormValues({ ...formValues, [key]: value });
   };
 
-  const changeUserAvatar = (file: Blob) => {
+  const changeUserAvatar = async (file: Blob) => {
     const formData = new FormData();
     formData.append('filedata', file);
 
-    axios.post('http://localhost:5000/user/upload-avatar', formData);
+    const url: string = (await axios.post(`http://localhost:5000/user/upload-avatar?userId=${user?.id}`, formData)).data;
+    // @ts-ignore
+    setUser({ ...user, avatarUrl: url });
   };
 
   return (
@@ -69,7 +71,7 @@ const UserPage = () => {
               <div className="userPage__banner">
                 <div className="userPage__banner-info">
                   <FileDrop onSendFiles={changeUserAvatar}>
-                    <Avatar sx={{ height: '60px', width: '60px' }} src={''} alt="" />
+                    <Avatar sx={{ height: '60px', width: '60px' }} src={`http://localhost:5000/` + user?.avatarUrl} alt="" />
                   </FileDrop>
 
                   <div className="userPage__banner-info-date">

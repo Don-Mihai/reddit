@@ -9,6 +9,9 @@ import { IPost } from '../../redux/Post/types';
 import { useDispatch } from 'react-redux';
 import { likePost, dislikePost } from '../../redux/Post';
 import { AppDispatch } from '../../redux/store';
+import { userInfo } from 'os';
+import FileDrop from '../FileDrop';
+import axios from 'axios';
 
 interface Props {
   post: IPost;
@@ -78,12 +81,21 @@ const Post = ({ post, onDelete, onSaveChanges, onOpenPost, isHomePage }: Props) 
     }, 1000);
   };
 
+  const changePostImg = async (file: Blob) => {
+    const formData = new FormData();
+    formData.append('filedata', file);
+
+    const url: string = (await axios.post(`http://localhost:5000/user/upload-avatar?userId=${user?.id}`, formData)).data;
+    // @ts-ignore
+    setUser({ ...user, avatarUrl: url });
+  };
+
   return (
     <div className={`post ${isHomePage ? 'hoverable' : ''}`}>
       <div className="Header">
         <div className="group">
           <div className="icon">
-            <Avatar src="https://avatars.akamai.steamstatic.com/bf9c5efeb726c14f07e66c408424067149a97724.jpg" alt="" />
+            <Avatar src={`http://localhost:5000/` + post?.author?.avatarUrl} alt="" />
           </div>
           {!isEditMode ? <div className="title">{post?.title}</div> : <TextField name="title" onChange={onChange} value={formValues?.title} />}
         </div>
@@ -126,6 +138,11 @@ const Post = ({ post, onDelete, onSaveChanges, onOpenPost, isHomePage }: Props) 
           <div className="image">
             <img src={post?.contentUrl} alt="cats" />
           </div>
+        )}
+        {isEditMode && (
+          <FileDrop onSendFiles={changePostImg}>
+            <div className="post__drop"></div>
+          </FileDrop>
         )}
       </div>
       <div className="footer">

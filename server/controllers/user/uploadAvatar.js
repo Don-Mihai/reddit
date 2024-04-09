@@ -1,4 +1,5 @@
 import expressAsyncHandler from 'express-async-handler';
+import fs from 'fs';
 
 function saveData(userId, propertyKey, propertyValue) {
   const dbFilePath = 'db.json';
@@ -15,7 +16,7 @@ function saveData(userId, propertyKey, propertyValue) {
 
   // Обновляем данные в объекте
   fileData.users = fileData.users.map((user) => {
-    if (user.id === Number(userId)) {
+    if (String(user.id) === String(userId)) {
       let newValue = propertyValue;
       if (Array.isArray(user[propertyKey]) && Array.isArray(propertyValue)) {
         // Если свойство - это массив, добавляем новые данные к существующему массиву
@@ -38,14 +39,13 @@ function saveData(userId, propertyKey, propertyValue) {
 const uploadAvatar = expressAsyncHandler((req, res) => {
   let filedata = req.file;
   let userId = req.query?.userId;
-  let date = req.query?.date;
 
   if (!filedata) {
     res.send('Ошибка при загрузке файла');
   } else {
     // Сохраняем путь до изображения в файле db.json
     console.log('userId', userId);
-    saveData(userId, 'gallery', filedata.filename);
+    saveData(userId, 'avatarUrl', filedata.filename);
     res.send(filedata.filename);
   }
 

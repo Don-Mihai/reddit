@@ -23,6 +23,7 @@ const Home = () => {
   const { posts, isLoading } = useSelector((state: RootState) => state.post);
 
   const isUserAuth = useSelector((state: RootState) => state.users.isUserAuth);
+  const user = useSelector((state: RootState) => state.users.currentUser);
 
   const dispatch = useDispatch<AppDispatch>();
   const getPosts = async () => {
@@ -50,6 +51,7 @@ const Home = () => {
       title: formValues.title,
       text: formValues.text,
       contentUrl: formValues.contentUrl,
+      author: user,
     };
 
     dispatch(add(payload));
@@ -78,8 +80,6 @@ const Home = () => {
   return (
     <>
       {isUserAuth && <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />}
-
-      <Button onClick={() => axios.get('http://localhost:5000/user')}>Получиьт пользователя</Button>
 
       <div className="posts">
         {isLoading

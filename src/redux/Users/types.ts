@@ -1,25 +1,25 @@
 export interface IUser {
-    id: number;
-    username: string;
-    birthdate: string;
-    email: string;
-    password: string;
-    avatarUrl: string;
+  id: number | string;
+  username: string;
+  birthdate: string;
+  email: string;
+  password: string;
+  avatarUrl: string;
 }
 
 export interface PCreateUser {
-    email: string;
-    username: string;
-    password: string;
+  email: string;
+  username: string;
+  password: string;
 }
 
 export interface PAuthUser {
-    username: string;
-    password: string;
+  username: string;
+  password: string;
 }
 
 export interface UserState {
-    usersList: [];
-    currentUser: IUser;
-    isUserAuth: boolean;
+  usersList: [];
+  currentUser: IUser;
+  isUserAuth: boolean;
 }

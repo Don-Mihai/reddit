@@ -15,6 +15,7 @@ export interface PCreatePost {
   contentUrl: string;
   title: string;
   text: string;
+  author: IUser;
 }
 
 export interface PostState {

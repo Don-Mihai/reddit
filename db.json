@@ -1,22 +1,18 @@
 {
   "posts": [
     {
-      "id": "c20d",
-      "title": "qqq",
-      "text": "wqqwqwqew",
-      "contentUrl": ""
-    },
-    {
-      "id": "bc5b",
-      "title": "eeewttttt",
-      "text": "eerer",
-      "contentUrl": ""
-    },
-    {
-      "id": "af90",
-      "title": "1",
-      "text": "1",
-      "contentUrl": "1"
+      "id": "4944",
+      "title": "новвая задача",
+      "text": "qqq",
+      "contentUrl": "",
+      "author": {
+        "username": "admin",
+        "email": "s@s.ru",
+        "password": "admin",
+        "birthdate": "20.12.2000",
+        "id": "1",
+        "avatarUrl": "1712684035094-cat.png"
+      }
     }
   ],
   "users": [
@@ -25,7 +21,8 @@
       "email": "s@s.ru",
       "password": "admin",
       "birthdate": "20.12.2000",
-      "id": "1"
+      "id": "1",
+      "avatarUrl": "1712684035094-cat.png"
     },
     {
       "username": "1",
