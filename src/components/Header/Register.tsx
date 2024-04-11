@@ -43,7 +43,7 @@ const Register = (props: any) => {
   };
 
   const registerEmail = () => {
-    axios.post('http://localhost:5000/user/register', { email: formValues.email });
+    axios.post('http://localhost:5000/user/register', { email: formValues.email, password: formValues.password });
     // setRegMail(!regMail);
   };
 
@@ -51,13 +51,14 @@ const Register = (props: any) => {
   const isReg = props.onIsReg;
 
   const onRegUser = async () => {
-    const payload: PCreateUser = {
+    const payload: any = {
       email: formValues.email,
-      username: formValues.username,
       password: formValues.password,
     };
 
-    dispatch(regUser(payload));
+    await axios.post('http://localhost:5000/user/register', payload);
+
+    // dispatch(regUser(payload));
     close();
     isReg(true);
   };
@@ -105,6 +106,7 @@ const Register = (props: any) => {
 
           <div className="modal__inputs">
             <TextField value={formValues.email} name="email" onChange={onchange} label="E-mail" variant="filled" fullWidth />
+            <TextField value={formValues.password} name="password" onChange={onchange} label="Password" variant="filled" fullWidth />
           </div>
 
           <div className="modal__link-wrap">
