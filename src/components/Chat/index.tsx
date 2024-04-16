@@ -32,7 +32,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-// const socket = io('http://localhost:3003/');
+const socket = io('http://localhost:3003/');
 interface Props {
   handleClose: () => void;
   open: boolean;
@@ -49,6 +49,21 @@ export default function Chat({ open, handleClose }: Props) {
     axios.get('http://localhost:3001/users').then((res) => {
       setUsers(res.data);
     });
+
+    // Обработчик получения нового сообщения
+    socket.on('message', (message) => {
+      setMessages((prev) => [...prev, message]);
+    });
+
+    // Подписка на событие получения истории сообщений для комнаты
+    socket.on('chatHistory', (history) => {
+      setMessages(history);
+    });
+
+    return () => {
+      socket.off('message');
+      socket.off('chatHistory');
+    };
   }, [open]);
 
   useEffect(() => {
@@ -65,9 +80,8 @@ export default function Chat({ open, handleClose }: Props) {
         chatId,
       };
 
-      const mes = (await axios.post(`http://localhost:3001/messages`, message)).data;
-
-      setMessages([...messages, mes]);
+      socket.emit('sendMessage', message);
+      setFormValues({ message: '' });
     }
   };
 
@@ -82,6 +96,7 @@ export default function Chat({ open, handleClose }: Props) {
     const id = generateChatId(user?.id, localStorage.getItem('userId'));
 
     setChatId(id);
+    socket.emit('joinChat', id);
 
     setCurrentRecipient(user);
   };
