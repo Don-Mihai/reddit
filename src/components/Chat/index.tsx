@@ -32,7 +32,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const socket = io('http://localhost:3003/');
+// const socket = io('http://localhost:3003/');
 interface Props {
   handleClose: () => void;
   open: boolean;
@@ -51,13 +51,17 @@ export default function Chat({ open, handleClose }: Props) {
     });
   }, [open]);
 
-  const onSendMessage = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const onSendMessage = async (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter' && formValues.message !== '') {
       const message = {
         text: formValues.message,
         senderId: localStorage.getItem('userId'),
         chatId,
       };
+
+      const mes = (await axios.post(`http://localhost:3001/messages`, message)).data;
+
+      setMessages([...messages, mes]);
     }
   };
 
@@ -69,7 +73,7 @@ export default function Chat({ open, handleClose }: Props) {
   };
 
   const onUserClick = (user: any) => {
-    const id = generateChatId(user.id, localStorage.getItem('userId'));
+    const id = generateChatId(user?.id, localStorage.getItem('userId'));
 
     setChatId(id);
 
@@ -77,7 +81,7 @@ export default function Chat({ open, handleClose }: Props) {
   };
 
   const userType = (user: any) => {
-    if (String(user.id) === localStorage.getItem('userId')) {
+    if (String(user?.id) === localStorage.getItem('userId')) {
       return 'isMe';
     }
     if (currentRecipient.id === user.id) {
@@ -120,7 +124,7 @@ export default function Chat({ open, handleClose }: Props) {
                 const isNewDate = getDate(message?.createDate) !== getDate(nextMessage?.createDate);
                 return (
                   <>
-                    <div className={String(message.sender.id) === localStorage.getItem('userId') ? 'message message--my' : 'message'}>{message.text}</div>
+                    <div className={String(message?.sender?.id) === localStorage.getItem('userId') ? 'message message--my' : 'message'}>{message.text}</div>
                     {isNewDate && (
                       <div style={{ margin: '0 auto' }}>{nextMessage?.createDate ? new Date(nextMessage?.createDate).toLocaleDateString() : ''}</div>
                     )}

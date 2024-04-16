@@ -60,5 +60,54 @@
       "id": "3"
     }
   ],
-  "messages": []
+  "messages": [
+    {
+      "id": "0c44",
+      "text": "Привет",
+      "senderId": "1",
+      "chatId": "1-3"
+    },
+    {
+      "id": "2f29",
+      "text": "Привет",
+      "senderId": "1",
+      "chatId": "1-3"
+    },
+    {
+      "id": "8b64",
+      "text": "Ghdtn",
+      "senderId": "1",
+      "chatId": "1-3"
+    },
+    {
+      "id": "1c75",
+      "text": "sdfsd",
+      "senderId": "1",
+      "chatId": "1-3"
+    },
+    {
+      "id": "1370",
+      "text": "qq",
+      "senderId": "1",
+      "chatId": "1-3"
+    },
+    {
+      "id": "6c29",
+      "text": "fdf",
+      "senderId": "1",
+      "chatId": "1-3"
+    },
+    {
+      "id": "b897",
+      "text": "fdfdhsadkjhsfdhksd",
+      "senderId": "1",
+      "chatId": "1-3"
+    },
+    {
+      "id": "b1f1",
+      "text": "fdfdhsadkjhsfdhksddfjhsjfhd",
+      "senderId": "1",
+      "chatId": "1-3"
+    }
+  ]
 }
