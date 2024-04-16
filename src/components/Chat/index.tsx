@@ -51,6 +51,12 @@ export default function Chat({ open, handleClose }: Props) {
     });
   }, [open]);
 
+  useEffect(() => {
+    axios.get(`http://localhost:3001/messages?chatId=${chatId}`).then((res) => {
+      setMessages(res.data);
+    });
+  }, [chatId]);
+
   const onSendMessage = async (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter' && formValues.message !== '') {
       const message = {
