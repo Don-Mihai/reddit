@@ -17,10 +17,10 @@ import { getDate } from 'date-fns';
 import io from 'socket.io-client';
 
 // @ts-ignore
-import message from './message.mp3';
+// import message from './message.mp3';
 import { generateChatId } from './utils';
 
-const audio = new Audio(message);
+// const audio = new Audio(message);
 // new
 
 const Transition = React.forwardRef(function Transition(
@@ -46,7 +46,7 @@ export default function Chat({ open, handleClose }: Props) {
   const [chatId, setChatId] = useState<string>('');
 
   useEffect(() => {
-    axios.get('http://localhost:3003/user/all').then((res) => {
+    axios.get('http://localhost:3001/users').then((res) => {
       setUsers(res.data);
     });
   }, [open]);
@@ -105,14 +105,14 @@ export default function Chat({ open, handleClose }: Props) {
             {users.map((user) => {
               return (
                 <div onClick={() => onUserClick(user)} className={`chat__user ${userType(user)}`}>
-                  {user?.firstName}
+                  {user?.username}
                 </div>
               );
             })}
           </div>
 
           <div className="messages">
-            <h1>{currentRecipient.firstName}</h1>
+            <h1>{currentRecipient.username}</h1>
             {messages
               .sort((a, b) => new Date(a.createDate).getTime() - new Date(b.createDate).getTime())
               .map((message, index, arr) => {
