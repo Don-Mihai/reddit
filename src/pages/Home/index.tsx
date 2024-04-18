@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { add, deletePost, get, saveChangesAsync } from '../../redux/Post';
 import { AppDispatch, RootState } from '../../redux/store';
-import { PCreatePost } from '../../redux/Post/types';
+import { PCreatePost, categories } from '../../redux/Post/types';
 
 import { getById, setUserAuth } from '../../redux/Users';
 
@@ -14,6 +14,9 @@ import PostSkeleton from '../../components/Post/PostSkeleton';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import InputLabel from '@mui/material/InputLabel';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 const initialState = { title: '', text: '', contentUrl: '' };
 
@@ -77,16 +80,38 @@ const Home = () => {
     navigate(id);
   };
 
+  const [category, setCategory] = useState('');
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setCategory(event.target.value as string);
+  };
+
   return (
     <>
       {isUserAuth && <CreatePost formValues={formValues} addPost={addPost} onchange={onchange} />}
 
+      <InputLabel id="demo-simple-select-label">Категория</InputLabel>
+      <Select fullWidth labelId="demo-simple-select-label" id="demo-simple-select" displayEmpty value={category} onChange={handleChange}>
+        <MenuItem value="">All</MenuItem>
+        {categories.map((category) => (
+          <MenuItem value={category}>{category}</MenuItem>
+        ))}
+      </Select>
+
       <div className="posts">
         {isLoading
           ? Array.from({ length: 6 }, (_, index) => <PostSkeleton key={index} />)
-          : posts.map((post) => {
-              return <Post onDelete={onDeletePost} post={post} onSaveChanges={onSaveChangesPost} onOpenPost={onOpenPost} isHomePage={true} />;
-            })}
+          : posts
+              .filter((post) => {
+                if (category === '') {
+                  return true;
+                } else {
+                  return post?.category?.split?.(', ').includes?.(category);
+                }
+              })
+              .map((post) => {
+                return <Post onDelete={onDeletePost} post={post} onSaveChanges={onSaveChangesPost} onOpenPost={onOpenPost} isHomePage={true} />;
+              })}
       </div>
     </>
   );

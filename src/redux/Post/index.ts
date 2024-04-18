@@ -28,6 +28,7 @@ const initialState: PostState = {
     countLike: 0,
     countRepost: 0,
     countComment: 0,
+    category: '',
   },
 };
 
