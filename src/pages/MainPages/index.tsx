@@ -28,10 +28,10 @@ const MainPages = () => {
         </div>
         <Popular />
       </main>
-      <IconButton sx={{ position: 'fixed', bottom: '10px', right: '10px' }} onClick={handleClickOpen} color="primary">
+      {/* <IconButton sx={{ position: 'fixed', bottom: '10px', right: '10px' }} onClick={handleClickOpen} color="primary">
         <MessageIcon />
       </IconButton>
-      <Chat open={open} handleClose={handleClose} />
+      <Chat open={open} handleClose={handleClose} /> */}
     </div>
   );
 };

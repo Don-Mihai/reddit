@@ -1,7 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { PostState, IPost, PCreatePost } from './types';
-
 import axios from 'axios';
+import OpenAI from 'openai';
+
+const openaiKey = process.env.REACT_APP_OPENAI_KEY || '';
+
+const openai = new OpenAI({ apiKey: openaiKey, dangerouslyAllowBrowser: true, baseURL: 'https://cors-anywhere.herokuapp.com/https://api.openai.com/v1/' });
 
 const initialState: PostState = {
   isLoading: false,
@@ -88,7 +92,33 @@ export const deletePost = createAsyncThunk('post/delete', async (postId: number 
 export const add = createAsyncThunk('post/post', async (payload: PCreatePost): Promise<IPost> => {
   const post = (await axios.post('http://localhost:3001/posts', payload)).data;
 
-  return post;
+  try {
+    const completion = await openai.chat.completions.create({
+      messages: [
+        {
+          role: 'system',
+          content:
+            'You should categorize the post based on its content and context, examples are: Home tasks, Work, Study, Personal goals, Health, Finances, Leisure and entertainment, Shopping, Family and friends, Beauty and health, Car, Travel, Hobbies, Charity, Agriculture, Pets, Garden and yard, Repair and construction, Sports, Education, Career, Reading, Music, Movies and TV, Games, Internet and technology, Languages, Skills, Family, Friends, Events, Birthdays, Holidays, Other',
+        },
+        { role: 'user', content: payload.text },
+      ],
+      model: 'gpt-3.5-turbo',
+    });
+
+    // Получаем предсказанную категорию
+    const predictedCategory = completion.choices[0].message?.content;
+
+    const editedPost = (
+      await axios.put(`http://localhost:3001/posts/${post.id}`, {
+        ...post,
+        category: predictedCategory,
+      })
+    ).data;
+
+    return editedPost;
+  } catch (error) {
+    return post;
+  }
 });
 
 export const saveChangesAsync = createAsyncThunk('post/saveChanges', async (data: { formValues: any; postId: string | number }) => {
